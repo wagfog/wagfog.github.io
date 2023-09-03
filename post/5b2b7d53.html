@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PA4 | Swag_BLog</title><meta name="author" content="Big_Swag"><meta name="copyright" content="Big_Swag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="多道程序在之前的内容中，我们已经成功实现了一个批处理系统，甚至运行了仙剑奇侠传！ 但是我们的系统仍然具备已经的缺憾，就是目前只能运行一个程序，只有当一个程序结束执行之后，才会开始执行下一个程序  影响 输入输出比CPU性能比起来可以说是慢出天际了 那么在输出输出的时间中，CPU一直在等待不做事情了！   那么，与其让系统陷入无异议的等待，不如当它做一些事情！ 简单实现： 系统一开始就加载多个程序，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PA4">
+<meta property="og:url" content="http://example.com/post/5b2b7d53.html">
+<meta property="og:site_name" content="Swag_BLog">
+<meta property="og:description" content="多道程序在之前的内容中，我们已经成功实现了一个批处理系统，甚至运行了仙剑奇侠传！ 但是我们的系统仍然具备已经的缺憾，就是目前只能运行一个程序，只有当一个程序结束执行之后，才会开始执行下一个程序  影响 输入输出比CPU性能比起来可以说是慢出天际了 那么在输出输出的时间中，CPU一直在等待不做事情了！   那么，与其让系统陷入无异议的等待，不如当它做一些事情！ 简单实现： 系统一开始就加载多个程序，">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-09-03T07:42:03.000Z">
+<meta property="article:modified_time" content="2023-09-03T07:42:21.661Z">
+<meta property="article:author" content="Big_Swag">
+<meta property="article:tag" content="PA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/post/5b2b7d53.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PA4',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-03 15:42:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Swag_BLog"><span class="site-name">Swag_BLog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PA4</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-09-03T07:42:03.000Z" title="Created 2023-09-03 15:42:03">2023-09-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-09-03T07:42:21.661Z" title="Updated 2023-09-03 15:42:21">2023-09-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PA4"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="多道程序"><a href="#多道程序" class="headerlink" title="多道程序"></a>多道程序</h1><p>在之前的内容中，我们已经成功实现了一个批处理系统，甚至运行了仙剑奇侠传！</p>
+<p>但是我们的系统仍然具备已经的缺憾，就是目前只能运行一个程序，只有当一个程序结束执行之后，才会开始执行下一个程序</p>
+<ul>
+<li>影响<ul>
+<li>输入输出比CPU性能比起来可以说是慢出天际了</li>
+<li>那么在输出输出的时间中，CPU一直在等待不做事情了！</li>
+</ul>
+</li>
+<li>那么，与其让系统陷入无异议的等待，不如当它做一些事情！</li>
+<li>简单实现：<ul>
+<li>系统一开始就加载多个程序，运行第一个程序</li>
+<li>当第一个程序需要输入输入的时候，就切换到第二个程序来运行</li>
+<li>这个流程是可以以此类推的</li>
+</ul>
+</li>
+</ul>
+<p>上面我们说的内容就是<strong>多道程序</strong>的基本思想</p>
+<ul>
+<li>具体实现<ul>
+<li>在内存中可以同时存在多个进程</li>
+<li>在满足某些条件的情况下，可以让执行流在这些进程中切换</li>
+</ul>
+</li>
+</ul>
+<p><strong>下面是两个接下来会逐渐回答的两个问题</strong></p>
+<h2 id="如何把不同的进程加载到不同的内存位置？"><a href="#如何把不同的进程加载到不同的内存位置？" class="headerlink" title="如何把不同的进程加载到不同的内存位置？"></a>如何把不同的进程加载到不同的内存位置？</h2><ol>
+<li>虚拟内存分配：操作系统为每个进程分配一个独立的虚拟内存空间。这个空间是逻辑上连续的，但不需要与物理内存的布局一致。</li>
+<li>内存映射：操作系统根据虚拟内存空间中的程序代码、数据和堆栈的需求，将对应的物理内存页面映射到虚拟内存。这可以通过使用分页或分段机制实现。</li>
+<li>地址空间布局随机化（ASLR）：为了增强系统的安全性，许多操作系统会应用地址空间布局随机化（ASLR）技术，即在每次启动进程时随机选择加载的基址。这样做可以防止恶意攻击者利用已知的内存布局进行攻击，增加系统的抵御能力。</li>
+<li>共享库和动态链接：对于使用共享库或动态链接库的进程，操作系统会将这些库加载到进程的内存空间中。这样不同的进程可以共享相同的库，减少内存使用和提高效率</li>
+</ol>
+<h2 id="为什么不同的进程需要不同的栈空间"><a href="#为什么不同的进程需要不同的栈空间" class="headerlink" title="为什么不同的进程需要不同的栈空间"></a>为什么不同的进程需要不同的栈空间</h2><p>因为每个进程在运行时需要维护自己的函数调用层次、局部变量和其他相关信息。栈空间是用于存储函数的局部变量、函数参数、返回地址和其他与函数调用相关的信息的一块内存区域。</p>
+<p>每个进程的栈空间在内存中是相互隔离的，这样就确保了一方面进程之间的数据不会相互干扰，另一方面也提供了一种安全机制，使得进程在运行时可以自由地操作栈空间而不会影响其他进程。</p>
+<p>不同的进程需要不同的栈空间是为了保证进程之间的数据隔离性、安全性以及可靠性，同时也确保每个进程能够有效地管理自己的函数调用和局部变量。</p>
+<h2 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h2><p>上下文的<strong>本质就是进程的状态</strong></p>
+<p>要在不同的进程中切换，我们就需要考虑如何在多个用户进程中进行上下文的切换</p>
+<h3 id="实现上下文切换"><a href="#实现上下文切换" class="headerlink" title="实现上下文切换"></a>实现上下文切换</h3><p>为了实现这个目标</p>
+<p>我们需要了解以下知识</p>
+<ul>
+<li>上下文切换的基本原理</li>
+<li>进程控制块</li>
+<li>内核线程</li>
+</ul>
+<h4 id="根据讲义来实现1："><a href="#根据讲义来实现1：" class="headerlink" title="根据讲义来实现1："></a>根据讲义来实现1：</h4><ul>
+<li>kcontext函数————————kernel context thread函数<ul>
+<li>这个函数用来在进程的栈上<strong>人工创建一个上下文结构</strong>，使得将来切换的时候可以根据这个结构来正确恢复上下文</li>
+<li>操作：在栈的地步创建上下文即可，然后返回上下文的指针</li>
+</ul>
+</li>
+<li>context_kload()<ul>
+<li>对kcontext函数的处于操作系统层的封装</li>
+<li>调用了kontext函数创建了上下问，把返回的指针记录到PCB的cp中</li>
+</ul>
+</li>
+<li>schedule()<ul>
+<li>调度函数</li>
+<li>如果说上下文的创建是AM中CTE部分的工作，那么具体切换到哪个上下文就是操作系统决定的</li>
+<li>该函数先保存好当前运行的进程，然后获取pcb[0]上下文的地址返回</li>
+<li>这样就实现了上下文的切换</li>
+</ul>
+</li>
+<li>修改CTE中 <code>__am_asm_trap()</code><ul>
+<li>a0存储着返回值</li>
+<li>sp是栈顶指针</li>
+<li>a0的值赋予sp即可</li>
+</ul>
+</li>
+</ul>
+<h4 id="根据讲义实现2："><a href="#根据讲义实现2：" class="headerlink" title="根据讲义实现2："></a>根据讲义实现2：</h4><p>1。这里是需要修改kcontext，支持arg的传递</p>
+<p><strong>知到应该把arg的指针传入哪个寄存器即可</strong></p>
+<p>2。在init的地方用context_kload进行创建一个新的进程</p>
+<p>3。在schedule进行调度修改即可</p>
+<h4 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h4><ol>
+<li>定义：进程是一个执行中的程序的实例，包含了程序代码、数据和执行环境。它是资源分配的基本单位，拥有独立的内存空间和系统资源。线程是进程内的执行单元，负责实际的程序执行。</li>
+<li>资源共享：进程是相对独立的实体，它们之间的通信和数据共享需要使用特定的IPC（进程间通信）机制，如管道、共享内存等。而线程属于同一进程，它们共享进程的内存空间和资源，可以通过共享变量等方式进行通信和数据共享。</li>
+<li>切换开销：切换进程的开销较大，因为需要保存和恢复整个进程的上下文信息。而线程的切换开销较小，因为它们共享进程的上下文，只需要保存和恢复堆栈和寄存器等少量信息。</li>
+<li>并发性：多个线程可以在同一进程并发运行，共享相同的内存空间和资源，可以实现更高效的并发。而进程之间通常是并发运行的，它们拥有独立的内存空间和资源。</li>
+<li>故障隔离：在进程中的一个线程出现问题不会导致整个进程崩溃，而一个进程出现问题可能会导致整个进程终止。</li>
+<li>创建和销毁开销：创建和销毁线程的开销较小，通过操作系统提供的线程创建和销毁API即可。相对而言，创建和销毁进程的开销较大。</li>
+<li>安全性：对于进程，一个进程的代码和数据对其他进程是不可见的，因此进程之间相对隔离，提高了系统的安全性。而线程共享进程的内存空间，需要通过同步机制（如互斥锁、信号量等）来保证共享数据的正确访问，同时也增加了并发编程的复杂性。</li>
+</ol>
+<h2 id="用户进程"><a href="#用户进程" class="headerlink" title="用户进程"></a>用户进程</h2><h3 id="创建用户上下文"><a href="#创建用户上下文" class="headerlink" title="创建用户上下文"></a>创建用户上下文</h3><p>PA3的批处理系统中, 我们在 <code>naive_uload()</code>中直接通过函数调用转移到用户进程的代码, 那时候使用的还是内核区的栈, 万一发生了栈溢出, 确实会损坏操作系统的数据,</p>
+<p>所以</p>
+<p> 和内核线程不同, 用户进程的代码, 数据和堆栈都应该位于用户区, 而且需要保证用户进程能且只能访问自己的代码, 数据和堆栈.</p>
+<p>为了区别开来, 我们把PCB中的栈称为内核栈, 位于用户区的栈称为用户栈</p>
+<h3 id="用户进程的参数"><a href="#用户进程的参数" class="headerlink" title="用户进程的参数"></a>用户进程的参数</h3><p>用户进程也可以有自己的参数, 那就是你在程序设计课上学习过的 <code>argc</code>和 <code>argv</code>了, 还有一个你也许不怎么熟悉的 <code>envp</code>. <code>envp</code>是环境变量指针, 它指向一个字符串数组</p>
+<p>操作系统会将argc&#x2F;argv&#x2F;envp及其相关内<strong>容放到用户栈</strong>上，然后将GPRx设置为argc所在的地址</p>
+<p>就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">|               |</span><br><span class="line">+---------------+ &lt;---- ustack.end</span><br><span class="line">|  Unspecified  |</span><br><span class="line">+---------------+</span><br><span class="line">|               | &lt;----------+</span><br><span class="line">|    string     | &lt;--------+ |</span><br><span class="line">|     area      | &lt;------+ | |</span><br><span class="line">|               | &lt;----+ | | |</span><br><span class="line">|               | &lt;--+ | | | |</span><br><span class="line">+---------------+    | | | | |</span><br><span class="line">|  Unspecified  |    | | | | |</span><br><span class="line">+---------------+    | | | | |</span><br><span class="line">|     NULL      |    | | | | |</span><br><span class="line">+---------------+    | | | | |</span><br><span class="line">|    ......     |    | | | | |</span><br><span class="line">+---------------+    | | | | |</span><br><span class="line">|    envp[1]    | ---+ | | | |</span><br><span class="line">+---------------+      | | | |</span><br><span class="line">|    envp[0]    | -----+ | | |</span><br><span class="line">+---------------+        | | |</span><br><span class="line">|     NULL      |        | | |</span><br><span class="line">+---------------+        | | |</span><br><span class="line">| argv[argc-1]  | -------+ | |</span><br><span class="line">+---------------+          | |</span><br><span class="line">|    ......     |          | |</span><br><span class="line">+---------------+          | |</span><br><span class="line">|    argv[1]    | ---------+ |</span><br><span class="line">+---------------+            |</span><br><span class="line">|    argv[0]    | -----------+</span><br><span class="line">+---------------+</span><br><span class="line">|      argc     |</span><br><span class="line">+---------------+ &lt;---- cp-&gt;GPRx</span><br><span class="line">|               |</span><br></pre></td></tr></table></figure>
+
+<p>再修改call_main()的代码让其解析出真正的参数和环境变量</p>
+<p><strong>参数是要用户来指定的</strong></p>
+<p>用户要执行某个进程，是要用带参数的 <code>SYS_execve</code>系统调用，我们假设用户进程A将要通过 <code>SYS_execve</code>来执行另一个新程序B.</p>
+<ul>
+<li>如何在A的执行流中创建用户进程B?<ul>
+<li>首先是在PCB的内核栈中创建B的上下文结构</li>
+<li>接下来就是要在用户栈中放置用户进程B的参数.</li>
+</ul>
+</li>
+<li>如何结束A的执行流?<ul>
+<li>在创建B的上下文之后, 通过 <code>switch_boot_pcb()</code>修改当前的 <code>current</code>指针, 然后调用 <code>yield()</code>来强制触发进程调度. 这样以后, A的执行流就不会再被调度</li>
+<li>下一次调度的时候, 就可以恢复并执行B了.</li>
+</ul>
+</li>
+</ul>
+<h2 id="虚实交错的魔法"><a href="#虚实交错的魔法" class="headerlink" title="虚实交错的魔法"></a>虚实交错的魔法</h2><p>这里好像不需要写代码？学习即可</p>
+<h2 id="程序和内存的位置"><a href="#程序和内存的位置" class="headerlink" title="程序和内存的位置"></a>程序和内存的位置</h2><p>我们之前在打算 同时运行hello和pal的时候，会报错，因为它们都会被链接到0x83000000的内存位置，彼此之间的内容会被相互覆盖</p>
+<p>我们称之为：<strong>在内存中可以同时存在多个进程</strong>的条件被打破了所以我们需要对内存进行管理，而不是让多个进程随意使用</p>
+<p>操作系统需要去管理我们需要的内存资源，在运行一个新进程的时候，就给它分配一个空闲的内存位置，把它加载到这一内存位置上即可</p>
+<p>对此我们发起疑问:<strong>进程代码针对可以在内存位置上正确的运行吗？</strong></p>
+<h3 id="绝对代码"><a href="#绝对代码" class="headerlink" title="绝对代码"></a>绝对代码</h3><p>在程序中使用绝对地址来进行内存访问的代码就是<strong>绝对代码(absolute code</strong>)</p>
+<p>绝对代码是我们用程序中某个变量a的地址如<strong>写死的</strong>0x3001234对变量a进行访问</p>
+<p>如果我们把程序加载到别的位置, 加载后变量 <code>a</code>的实际位置就改变了, 但程序中的绝对代码还是认为变量 <code>a</code>仍然位于内存位置 <code>0x3001234</code></p>
+<p><strong>因此，绝对代码只有在固定的内存位置上才能正确运行</strong></p>
+<p>操作系统在加载时刻分配的空闲内存位置, 并不总是能让这种程序正确运行</p>
+<p>这个问题的一个解决方案, 就是让操作系统记录程序的加载位置, 当一个程序试图加载到一个已经被使用的内存位置时, 加载将会失败, 操作系统将返回一个错误</p>
+<p>同时操作系统会为每个程序维护多个不同加载地址的版本，期望有一个版本可以被加载成功</p>
+<p><strong>太麻烦了对吧？所以有了下面的方案</strong></p>
+<h3 id="可重定位代码"><a href="#可重定位代码" class="headerlink" title="可重定位代码"></a>可重定位代码</h3><p>有程序员开发了一类”<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Self-relocation">自重定位(self-relocation)</a>“的特殊程序, 这种程序可以在开始运行的时候, 先把自己重定位到其它内存位置, 然后再开始真正的运行. 这种重定位类型称为”<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Run_time_(program_lifecycle_phase)">运行时(run time)</a>重定位”.</p>
+<p>事实上, BIOS中的程序就是这种自重定位的程序. 这是因为, BIOS一般是固化在ROM中, 无法对ROM中的数据进行写操作. 计算机启动后会从BIOS中执行程序, 但这个BIOS程序马上会把自己拷贝到其它内存位置, 并进行一些重定位工作</p>
+<p>但是这还没有彻底解决问题</p>
+<p>程序在运行时刻不知道重定位的目标位置是否空闲，<strong>只有操作系统知到</strong></p>
+<p>所以应该让加载器来进行重定位，于是有了”<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Loader_(computing)">加载时(load time)</a>重定位”的说法</p>
+<ol>
+<li>加载器会申请一个空闲的内存位置</li>
+<li>将程序加载到这个内存位置，把程序重定位到这个内存位置</li>
+<li>然后执行</li>
+</ol>
+<p>这也是GNU&#x2F;Linux插入内核模块的方式（内核模块插入的方式可以节约内存，在需要用到时才将对应模块加载到内存中，避免了不必要的内存浪费</p>
+<h3 id="位置无关代码"><a href="#位置无关代码" class="headerlink" title="位置无关代码"></a>位置无关代码</h3><p><strong>加载时重定位会带来额外的开销</strong></p>
+<ul>
+<li>有没有方法可以节省重定位的开销, 甚至不进行重定位呢?<ul>
+<li>如果程序中的所有寻址, 都是针对程序位置来进行相对寻址操作, 这样的程序就可以被加载到任意位置执行, 而不会出现绝对代码的问题了！</li>
+</ul>
+</li>
+</ul>
+<p>上面的就是PIC(位置无关代码的基本思想)</p>
+<p>如果一个文件全部由PIC组成，那么这个文件就是PIE（位置无关可执行文件）</p>
+<p>PIE还能在一定程度上对恶意的攻击程序造成了干扰: 恶意程序也无法提前假设PIE运行的地址.</p>
+<p>位置无关代码的实现需要依赖于程序中一个叫GOT（全局偏移量表）的大屏幕关系。加载器要在加载程序时往GOT填写正确的内容</p>
+<h2 id="虚实交错的魔法-1"><a href="#虚实交错的魔法-1" class="headerlink" title="虚实交错的魔法"></a>虚实交错的魔法</h2><p>接下来我们从<strong>内存</strong>方面来思考问题</p>
+<p>我们知道程序会经历编译, 链接, 加载, 运行这四个阶段, 绝对代码经过编译链接之后, 程序看到的内存地址就会确定下来了</p>
+<p> 加载运行的时候就会让程序使用这一内存地址, 来保证程序可以正确运行</p>
+<p>我们可以<strong>把程序看到的内存和它运行时真正使用的内存解耦开来</strong>，这就是<strong>虚拟内存</strong>的思想。虚拟内存, 就是在真正的内存(也叫物理内存)之上的一层专门给进程使用的抽象</p>
+<p>真正运行的时候, 才把虚拟地址映射到物理地址. 这样, 我们只要把程序链接到一个固定的虚拟地址, 加载的时候把它们加载到不同的物理地址, 并维护好虚拟地址到物理地址的映射关系, 就可以一劳永逸地解决上述问题了!</p>
+<p>操作系统是不可能影响指令执行的具体过程的，在硬件中进行这一映射是唯一的选择了: 我们在处理器和存储器之间添加一个新的硬件模块MMU(Memory Management Unit, 内存管理单元), 它是虚拟内存机制的核心, 肩负起这一机制最重要的地址映射功能.</p>
+<p>注意到这个映射是进程相关的: 不同的进程有不同的映射, 这意味着对不同的进程来说, 同一个虚拟地址可能会被映射到不同的物理地址. 这恰好一劳永逸地解决了内存覆盖的问题</p>
+<h3 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h3><p>MMU具体如何进行地址映射呢？</p>
+<p>最简单的方法就是, 物理地址&#x3D;虚拟地址+偏移量. 这种最朴素的方式就是段式虚拟内存管理机制, 简称分段机制</p>
+<p>分段机制在硬件上的实现可以非常简单, 只需要在MMU中实现一个段基址寄存器就可以了</p>
+<p>，<strong>但是现代操作系统尽管仍然存在这种机制，已经不使用分段这种方法了</strong></p>
+<h1 id="超越容量的界限"><a href="#超越容量的界限" class="headerlink" title="超越容量的界限"></a>超越容量的界限</h1><ul>
+<li>为什么放弃分段？<ul>
+<li>一方面, 那些巨大无比的家伙们在一次运行当中只会触碰到很小部分的代码, 其实没有必要分配那么多内存把它们全部加载进来</li>
+<li>另一方面, 小程序运行结束之后, 它占用的存储空间就算被释放了, 也很容易成为”碎片空洞” - 只有比它更小的程序才能把碎片空洞用起来.</li>
+<li>因此分段被分页锁替代</li>
+</ul>
+</li>
+<li>我们只需要把一个程序中有需要的内容加载进去即可</li>
+<li>把连续的存储空间分割成小片段, 以这些小片段为单位进行组织, 分配和管理. 这正是分页机制的核心思想.</li>
+</ul>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p><img src="PA4/1692756769877.png" alt="1692756769877"></p>
+<p>分页机制引入了一个叫”页表”的结构, 页表中的每一个表项记录了一个虚拟页到物理页的映射关系, 来把不必连续的物理页面重新组织成连续的虚拟地址空间.</p>
+<p>每当加载程序的时候, 就给程序分配相应的物理页(注意这些物理页之间不必连续), 并为程序准备一个新的页表, 在页表中填写程序用到的虚拟页到这些物理页的映射关系.</p>
+<p>程序运行的时候, 操作系统就把之前为这个程序填写好的页表设置到MMU中, MMU就会根据页表的内容进行地址转换, 把程序的虚拟地址空间映射到操作系统所希望的物理地址空间上.</p>
+<h3 id="虚存管理中PIC的好处"><a href="#虚存管理中PIC的好处" class="headerlink" title="虚存管理中PIC的好处"></a>虚存管理中PIC的好处</h3><ul>
+<li>Q：PIC的其中一个好处是可以将代码加载到任意内存位置执行. 如果配合虚存管理, PIC还有什么新的好处呢? (Hint: 动态库已经在享受这些好处了)</li>
+<li>A：<ul>
+<li>可以实现代码的共享和重用，通过动态库，多个程序可以在内存中共享相同的代码，减少了内存的占用和加载时间</li>
+<li>提高程序安全性</li>
+</ul>
+</li>
+</ul>
+<h3 id="i386中的分页"><a href="#i386中的分页" class="headerlink" title="i386中的分页"></a>i386中的分页</h3><p>i386是X86史上首次引进分页机制的处理器。</p>
+<p>它把物理内存划分为4kb单位的页面，同时也采用了二级页表的结构，i386给第一级页表取了个新名字叫”页目录”,</p>
+<ul>
+<li>每个页目录和页表都有1024个表项，每个表项的大小都是4字节<ul>
+<li>表项包含了页表的基地址和标志位信息</li>
+</ul>
+</li>
+<li>因此，每一个页目录或者页表的大小都是4kb，显然不可能放在寄存器中的大小，只能存在于内存中</li>
+<li>为了找到页目录的地址，i386提供了CR3寄存器，存放页目录的基地址</li>
+</ul>
+<h3 id="分页中的细节"><a href="#分页中的细节" class="headerlink" title="分页中的细节"></a>分页中的细节</h3><ul>
+<li><p>i386不是一个32位的处理器吗, 为什么表项中的基地址信息只有20位, 而不是32位?</p>
+<ul>
+<li>i386的地址总线最多只能传输20位的信息，而数据总线更是只能传输16位的信息</li>
+<li>工程师的想法是将其分段，因此i386中存在段寄存器，每个寄存器存储一个段基址</li>
+<li>这样，一个完整的物理内存地址就由两部分组成，高16位的段基址和低16位的段内偏移量，当然它们有12位是重叠的，它们两部分相加在一起，才构成完整的物理地址。</li>
+</ul>
+</li>
+<li><p>手册上提到表项(包括CR3)中的基地址都是物理地址, 物理地址是必须的吗? 能否使用虚拟地址?</p>
+<ul>
+<li>在表项中使用物理地址是必需的，因为它确保了正确的地址映射和内存访问。</li>
+<li>虚拟地址不能直接用于表项中的基地址，因为虚拟地址需要经过地址转换和映射才能找到对应的物理地址。<ul>
+<li>就套娃啦</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>为什么不采用一级页表而采用多级页表？</p>
+<ul>
+<li>减少了所需页表项的数量，提高空间效率</li>
+<li>减少页表的访问时间</li>
+<li>降低了页表的维护成本</li>
+</ul>
+</li>
+</ul>
+<h3 id="空指针真的是空的吗？"><a href="#空指针真的是空的吗？" class="headerlink" title="空指针真的是空的吗？"></a>空指针真的是空的吗？</h3><p>空指针实际应该是指向 0x00000000的指针</p>
+<p>这个地址是一个不合法的地址，没有映射到任何实际的物理地址中，因此会博爱座</p>
+<h2 id="TLB-地址转换的加速"><a href="#TLB-地址转换的加速" class="headerlink" title="TLB-地址转换的加速"></a>TLB-地址转换的加速</h2><p>根据局部性原理，为了让地址转换的更加快速，所以需要缓存，也是是TLB</p>
+<ul>
+<li>TLB的基本单元是项, 一项存放了一次页级地址转换的结果 (其实就是一个页表项, 包括物理页号和一些和物理页相关的标志位), 功能上相当于一个cache block.</li>
+<li>TLB项的tag由虚拟页号来充当, 表示这一项对应于哪一个虚拟页号.</li>
+<li>TLB的项数一般不多, 为了提高命中率, TLB一般采用全相联或者组相联的组织方式.</li>
+<li>由于页目录和页表一旦建立之后, 一般不会随意修改其中的表项, 因此TLB不存在写策略和写分配方式的问题.</li>
+</ul>
+<h2 id="软件管理的TLB"><a href="#软件管理的TLB" class="headerlink" title="软件管理的TLB"></a>软件管理的TLB</h2><p>这一部分是mips32的内容</p>
+<p>x86和riscv32把TLB的内容交给了硬件来完成</p>
+<p>但mips32把TLB的内容交给了软件来完成，这样就会增大一些额外的开销</p>
+<h2 id="将虚存管理抽象成VME"><a href="#将虚存管理抽象成VME" class="headerlink" title="将虚存管理抽象成VME"></a>将虚存管理抽象成VME</h2><p>我们可以把许村管理的功能划入到AM的一类新的API中，名字就叫做VME</p>
+<p>虚存机制的本质是映射机制，每个进程维护各自的映射</p>
+<h3 id="在分页机制上运行nanos-lite"><a href="#在分页机制上运行nanos-lite" class="headerlink" title="在分页机制上运行nanos-lite"></a>在分页机制上运行nanos-lite</h3><p>由于页表位于内存中, 但计算机启动的时候, 内存中并没有有效的数据, 因此我们不可能让计算机启动的时候就开启分页机制. 操作系统为了启动分页机制, 首先需要准备一些内核页表.</p>
+<p>只需要在 <code>nanos-lite/include/common.h</code>中定义宏 <code>HAS_VME</code>, Nanos-lite在初始化的时候首先就会调用 <code>init_mm()</code>函数(在 <code>nanos-lite/src/mm.c</code>中定义)来初始化MM.</p>
+<ul>
+<li>初始化MM<ul>
+<li>将TRM提供的堆区起始地址作为空闲物理页的首地址<ul>
+<li>为了将来通过new_page()函数来分配空闲的物理页</li>
+<li>(为了简化手机线，MM采用顺序方式对物理页进行分配，无需要回收)</li>
+</ul>
+</li>
+<li>调用vme_init()函数</li>
+</ul>
+</li>
+</ul>
+<p>关于这部分最核心的API就是map了</p>
+<p>它需要在虚拟地址空间 <code>as</code>的页目录和页表中填写正确的内容, 使得将来在分页模式下访问一个虚拟页(参数 <code>va</code>)时, 硬件进行page table walk后得到的物理页, 正是之前在调用 <code>map()</code>时给出的目标物理页(参数 <code>pa</code>).</p>
+<p>为了让 <code>map()</code>填写的映射生效, 我们还需要在NEMU中实现分页机制. 具体地, 我们需要实现以下两点:</p>
+<ul>
+<li><p>如何判断CPU当前是否处于分页模式?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/ 检查当前系统状态是否支持内存区间为[vaddr, vaddr + len), 类型为type的内存访问</span><br><span class="line">int isa_vaddr_check(vaddr_t vaddr, int type, int len);</span><br></pre></td></tr></table></figure></li>
+<li><p>分页地址转换的具体过程应该如何实现?</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/ 对内存区间为[vaddr, vaddr + len), 类型为type的内存访问进行地址转换</span><br><span class="line">paddr_t isa_mmu_translate(vaddr_t vaddr, int type, int len);</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Big_Swag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/post/5b2b7d53.html">http://example.com/post/5b2b7d53.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PA/">PA</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/c54fe8f0.html" title="PA3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">PA3</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/post/c54fe8f0.html" title="PA3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-03</div><div class="title">PA3</div></div></a></div><div><a href="/post/110fe971.html" title="PA0-2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-03</div><div class="title">PA0-2</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Big_Swag</div><div class="author-info__description">myblog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">多道程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%8A%8A%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%8A%A0%E8%BD%BD%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E5%86%85%E5%AD%98%E4%BD%8D%E7%BD%AE%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">如何把不同的进程加载到不同的内存位置？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BF%9B%E7%A8%8B%E9%9C%80%E8%A6%81%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%88%E7%A9%BA%E9%97%B4"><span class="toc-number">1.2.</span> <span class="toc-text">为什么不同的进程需要不同的栈空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">1.3.</span> <span class="toc-text">上下文切换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">实现上下文切换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E8%AE%B2%E4%B9%89%E6%9D%A5%E5%AE%9E%E7%8E%B01%EF%BC%9A"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">根据讲义来实现1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E8%AE%B2%E4%B9%89%E5%AE%9E%E7%8E%B02%EF%BC%9A"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">根据讲义实现2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">线程和进程的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">用户进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">1.4.1.</span> <span class="toc-text">创建用户上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">用户进程的参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E5%AE%9E%E4%BA%A4%E9%94%99%E7%9A%84%E9%AD%94%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">虚实交错的魔法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%92%8C%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">程序和内存的位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.1.</span> <span class="toc-text">绝对代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%AE%9A%E4%BD%8D%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.2.</span> <span class="toc-text">可重定位代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E6%97%A0%E5%85%B3%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">位置无关代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E5%AE%9E%E4%BA%A4%E9%94%99%E7%9A%84%E9%AD%94%E6%B3%95-1"><span class="toc-number">1.7.</span> <span class="toc-text">虚实交错的魔法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%AE%B5"><span class="toc-number">1.7.1.</span> <span class="toc-text">分段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E8%B6%8A%E5%AE%B9%E9%87%8F%E7%9A%84%E7%95%8C%E9%99%90"><span class="toc-number">2.</span> <span class="toc-text">超越容量的界限</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5"><span class="toc-number">2.1.</span> <span class="toc-text">分页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%ADPIC%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">2.1.1.</span> <span class="toc-text">虚存管理中PIC的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#i386%E4%B8%AD%E7%9A%84%E5%88%86%E9%A1%B5"><span class="toc-number">2.1.2.</span> <span class="toc-text">i386中的分页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-number">2.1.3.</span> <span class="toc-text">分页中的细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%8C%87%E9%92%88%E7%9C%9F%E7%9A%84%E6%98%AF%E7%A9%BA%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-number">2.1.4.</span> <span class="toc-text">空指针真的是空的吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLB-%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E7%9A%84%E5%8A%A0%E9%80%9F"><span class="toc-number">2.2.</span> <span class="toc-text">TLB-地址转换的加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84TLB"><span class="toc-number">2.3.</span> <span class="toc-text">软件管理的TLB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E8%99%9A%E5%AD%98%E7%AE%A1%E7%90%86%E6%8A%BD%E8%B1%A1%E6%88%90VME"><span class="toc-number">2.4.</span> <span class="toc-text">将虚存管理抽象成VME</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%88%86%E9%A1%B5%E6%9C%BA%E5%88%B6%E4%B8%8A%E8%BF%90%E8%A1%8Cnanos-lite"><span class="toc-number">2.4.1.</span> <span class="toc-text">在分页机制上运行nanos-lite</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/5b2b7d53.html" title="PA4">PA4</a><time datetime="2023-09-03T07:42:03.000Z" title="Created 2023-09-03 15:42:03">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/c54fe8f0.html" title="PA3">PA3</a><time datetime="2023-09-03T07:40:35.000Z" title="Created 2023-09-03 15:40:35">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/110fe971.html" title="PA0-2">PA0-2</a><time datetime="2023-09-03T07:38:31.000Z" title="Created 2023-09-03 15:38:31">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/730b3a2f.html" title="B+Tree">B+Tree</a><time datetime="2023-09-03T07:30:53.000Z" title="Created 2023-09-03 15:30:53">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/8457a522.html" title="2021_Buffer_pool">2021_Buffer_pool</a><time datetime="2023-09-03T07:28:49.000Z" title="Created 2023-09-03 15:28:49">2023-09-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Big_Swag</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/moyu/"><i class="fa fa-gamepad"></i><span>休闲游戏</span></a><a class="rightMenu-item" target="_blank" rel="noopener" href="https://tools.haiyong.site"><i class="fa fa-tools"></i><span>实用工具</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:changeMouseMode();"><i class="fa fa-mouse"></i><span>切换鼠标右键</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script type="text/javascript" src="/js/rightmenu.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>

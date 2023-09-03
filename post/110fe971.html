@@ -1,0 +1,758 @@
+<!DOCTYPE html><html lang="cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PA0-2 | Swag_BLog</title><meta name="author" content="Big_Swag"><meta name="copyright" content="Big_Swag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PA0记录没什么好说的吧，就是配置环境 我记得好像遇到了什么错误？ 记得要会看OS返回出来的错误 有的时候包含了很有用的信息，比如找不到&#x2F;***** 有的时候path设置在根目录下了，所以会有问题 可以用echo命令查看环境变量有没有正确，然后用source ~&#x2F;.bashrc PA1记录悲催的红白机之夜装这个东西真的很麻烦，，对马虎的我来说 一个是因为我的Ubuntu莫名其妙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PA0-2">
+<meta property="og:url" content="http://example.com/post/110fe971.html">
+<meta property="og:site_name" content="Swag_BLog">
+<meta property="og:description" content="PA0记录没什么好说的吧，就是配置环境 我记得好像遇到了什么错误？ 记得要会看OS返回出来的错误 有的时候包含了很有用的信息，比如找不到&#x2F;***** 有的时候path设置在根目录下了，所以会有问题 可以用echo命令查看环境变量有没有正确，然后用source ~&#x2F;.bashrc PA1记录悲催的红白机之夜装这个东西真的很麻烦，，对马虎的我来说 一个是因为我的Ubuntu莫名其妙">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-09-03T07:38:31.000Z">
+<meta property="article:modified_time" content="2023-09-03T07:42:21.665Z">
+<meta property="article:author" content="Big_Swag">
+<meta property="article:tag" content="PA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/post/110fe971.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PA0-2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-03 15:42:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Swag_BLog"><span class="site-name">Swag_BLog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PA0-2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-09-03T07:38:31.000Z" title="Created 2023-09-03 15:38:31">2023-09-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-09-03T07:42:21.665Z" title="Updated 2023-09-03 15:42:21">2023-09-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PA0-2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="PA0记录"><a href="#PA0记录" class="headerlink" title="PA0记录"></a>PA0记录</h1><p>没什么好说的吧，就是配置环境</p>
+<p>我记得好像遇到了什么错误？</p>
+<p>记得要会看OS返回出来的错误</p>
+<p>有的时候包含了很有用的信息，比如找不到&#x2F;*****</p>
+<p>有的时候path设置在根目录下了，所以会有问题</p>
+<p>可以用echo命令查看环境变量有没有正确，然后用source ~&#x2F;.bashrc</p>
+<h1 id="PA1记录"><a href="#PA1记录" class="headerlink" title="PA1记录"></a>PA1记录</h1><h2 id="悲催的红白机之夜"><a href="#悲催的红白机之夜" class="headerlink" title="悲催的红白机之夜"></a>悲催的红白机之夜</h2><p>装这个东西真的很麻烦，，对马虎的我来说</p>
+<p>一个是因为我的Ubuntu莫名其妙识别不出那个常量，所以需要手动改成8291</p>
+<p>还有一个是</p>
+<p>make如果遇到某种问题失败了</p>
+<p><strong>需要重新make clean“！！！然后再make</strong></p>
+<p>然后make出来的<strong>可执行文件</strong>会出现在build文件中！</p>
+<p>不然就会像今天晚上这样子装了一晚上还以为是GUI错了</p>
+<h2 id="Monitor模块"><a href="#Monitor模块" class="headerlink" title="Monitor模块"></a>Monitor模块</h2><p>相比于CPU,memory，设备，还是这个模块最不熟悉把</p>
+<ul>
+<li>以下内容摘自PA文档<ul>
+<li>Monitor(监视器)模块是为了方便地监控客户计算机的运行状态而引入的. 它除了负责与GNU&#x2F;Linux进行交互(例如读入客户程序)之外, 还带有调试器的功能, 为NEMU的调试提供了方便的途径</li>
+<li>monitor并不属于一个计算机的必要组成部分, 但对NEMU来说, 它是必要的基础设施. 如果缺少monitor模块, 对NEMU的调试将会变得十分困难.</li>
+</ul>
+</li>
+</ul>
+<h2 id="getopt-函数"><a href="#getopt-函数" class="headerlink" title="getopt() 函数"></a>getopt() 函数</h2><p>说实话，我尝试过用man 3 getopt来直接阅读官方文档</p>
+<p>但是很要命的是，不知到是我今天头疼还是上面的英文真的难看懂</p>
+<p>还是看看中文解释把</p>
+<ul>
+<li>getopt()函数的出处就是unistd.h头文件</li>
+<li>int getopt(int argc,char * const argv[ ],const char * optstring);<ul>
+<li>前两个都不会陌生把</li>
+<li>optstring(选项字符串)</li>
+<li>返回值：int类型，但是是字符转回过来的，我们叫这个为选项字符</li>
+</ul>
+</li>
+<li>该函数还有几个小弟来辅佐他<ul>
+<li>小弟1、extern char* optarg;<ul>
+<li>保存选项参数</li>
+</ul>
+</li>
+<li>小弟2、extern int optind;<ul>
+<li>记录下一个检索位置</li>
+</ul>
+</li>
+<li>小弟3、extern int opterr;<ul>
+<li>是否将错误信息输出到stderr，0：不输出</li>
+</ul>
+</li>
+<li>小弟4、extern int optopt;<ul>
+<li>不在选项字符串中的选项</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>啊啊啊到底什么是选项字符串？？<ul>
+<li>“a:b :c d::e”，这就是一个选项字符串。对应到命令行就是-a ,-b ,-c ,-d, -e</li>
+<li>冒号表示参数，一个冒号就表示这个选项后面必须带有参数</li>
+<li>两个冒号的就表示这个选项的参数是可选的**,但要注意有参数时，参数与选项之间不能有空格**</li>
+<li>这边有很好的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingergege/p/5914218.html">例子</a></li>
+</ul>
+</li>
+<li>关于optind和opterr的初始值<ul>
+<li>这就要涉及到main函数的那两个参数了，argc表示参数的个数，argv[]表示每个参数字符串</li>
+<li>对于上面的输出argc就为3，argv[]分别为： .&#x2F;main 和 -b 和”qing er” ，实际上真正的参数是用第二个-b 开始</li>
+<li>前面提到过opterr非零表示产生的错误要输出到stderr上</li>
+<li>argv[1],所以optind的初始值为1，这是因为optind是下一次进行选项搜索的开始索引</li>
+</ul>
+</li>
+</ul>
+<h2 id="虚拟机初始化"><a href="#虚拟机初始化" class="headerlink" title="虚拟机初始化"></a>虚拟机初始化</h2><ol>
+<li>需要将客户程序读入到内存的什么位置? 为了让客户计算机的CPU可以执行客户程序, 因此我们需要一种方式让客户计算机的CPU知道客户程序的位置. 我们采取一种最简单的方式: 约定. 具体地, 我们让monitor直接把客户程序读入到一个固定的内存位置 <code>IMAGE_START</code>(也就是 <code>0x100000</code>).<ol>
+<li>这里说一下image的意思，镜像文件(iamge-file)</li>
+</ol>
+</li>
+</ol>
+<h3 id="BIOS和计算机启动"><a href="#BIOS和计算机启动" class="headerlink" title="BIOS和计算机启动"></a>BIOS和计算机启动</h3><p>我们知道内存是一种RAM, 是一种易失性的存储介质, 这意味着计算机刚启动的时候, 内存中的数据都是无意义的; 而BIOS是固化在ROM&#x2F;Flash中的, 它们都是非易失性的存储介质, BIOS中的内容不会因为断电而丢失.</p>
+<p>因此在真实的计算机系统中, 计算机启动后首先会把控制权交给BIOS, BIOS经过一系列初始化工作之后, 再从磁盘中将有意义的程序读入内存中执行. 对这个过程的模拟需要了解很多超出本课程范围的细节, 我们在PA中做了简化: 采取约定的方式让CPU直接从约定的内存位置开始执行.</p>
+<h3 id="杂记"><a href="#杂记" class="headerlink" title="杂记"></a>杂记</h3><p>通过阅读nemu的源码和看Nju的Gitbook，我开始逐渐的加深对虚拟机和主机关系的理解，以及计算器启动的相关初始化内容</p>
+<p>这种抽丝剥茧一般的层层深入真的很爽</p>
+<h3 id="物理内存的起始地址"><a href="#物理内存的起始地址" class="headerlink" title="物理内存的起始地址"></a>物理内存的起始地址</h3><p>x86的物理内存是从0开始编址的, 但对于一些ISA来说却不是这样, 例如mips32和riscv32的物理地址均从 <code>0x80000000</code>开始</p>
+<p>将来CPU访问内存时, 我们会将CPU将要访问的内存地址映射到 <code>pmem</code>中的相应偏移位置. 例如如果mips32的CPU打算访问内存地址 <code>0x80100000</code>, 我们会让它最终访问 <code>pmem[0x100000]</code>, 从而可以正确访问客户程序的第一条指令. 这种机制有一个专门的名字, 叫<strong>地址映射</strong></p>
+<p>对的！就是地址映射，我们可以在 <code>nemu/src/memory/paddr.c</code>中看到相关的操作</p>
+<h3 id="bathch-mod"><a href="#bathch-mod" class="headerlink" title="bathch mod"></a>bathch mod</h3><h4 id="什么是batch-mod"><a href="#什么是batch-mod" class="headerlink" title="什么是batch mod"></a>什么是batch mod</h4><p>Batch Mode是一种计算机操作模式，指的是用户在不交互的情况下运行程序。</p>
+<p>在Batch Mode下，用户将一连串的程序作业提交给操作系统，再由操作系统将其转交给计算机以便按一定顺序完成计算任务</p>
+<h4 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用"></a>有什么用</h4><p>Batch Mode通常用于大规模的有序计算任务，例如批量数据处理、批量编译等。其优点包括：</p>
+<ol>
+<li>提高效率：Batch Mode让计算机能够自动完成大量的任务，而无需用户一直亲自操作，大大提高了效率。</li>
+<li>可以通过脚本进行批量控制：在Batch Mode下，往往需要通过某种脚本语言进行批量控制，这种方式可以极大地提高工作效率和可复用性。</li>
+<li>避免人为出错：在Batch Mode下，大量的计算任务都被自动执行，避免了人工出错的风险，保障了计算结果的正确性。</li>
+</ol>
+<p>Batch Mode虽然对于一些小型计算任务意义不大，但对于大型、繁重的计算任务来说，可以极大地提高效率和保证计算任务的正确性。在数据处理、编译过程等场景下，Batch Mode被广泛应用。</p>
+<h3 id="cmd-c"><a href="#cmd-c" class="headerlink" title="cmd_c()"></a>cmd_c()</h3><p>这是一个定义在monitor&#x2F;debug文件下的函数</p>
+<p>调用他执行cpu_exec(-1)</p>
+<p>由于epu_exec(uint64_t )，所以-1会变成很大的数，但是这是未定义的</p>
+<h2 id="这个里框架里面有一个写错的地方"><a href="#这个里框架里面有一个写错的地方" class="headerlink" title="这个里框架里面有一个写错的地方"></a>这个里框架里面有一个写错的地方</h2><p>还好不是很难…按照正常的逻辑去做就可以了</p>
+<p><code>array subscript ‘struct gdb_conn[0]’ is partly outside array bounds of ‘unsigned char[8]’ [-Werror=array-bounds]</code></p>
+<p>爆了这个错误</p>
+<p>我看了相关的源码之后发现</p>
+<p>是calloc函数分配内存时，是calloc(1,sizeof(struct conn *))</p>
+<p>这肯定不对啊！分配地址哪有分配指针大小的空间的啊</p>
+<p>把它改为struct conn</p>
+<p>成功！</p>
+<h2 id="正则表达式相关内容"><a href="#正则表达式相关内容" class="headerlink" title="正则表达式相关内容"></a>正则表达式相关内容</h2><p>关于这部分内容呢，肯定是需要初步了解的，大概可以信息整理成这样：</p>
+<p><img src="PA%E8%AE%B0%E5%BD%95/1685453982160.png" alt="1685453982160"></p>
+<ul>
+<li>这块要我们完成的内容大概可以分为三个部分<ul>
+<li>一个是添加需要被匹配的正则rule，还有添加需要的类型到enum中</li>
+<li>C语言已经提供了一些标准函数来帮忙处理正则表达式了<ul>
+<li>regcomp</li>
+<li>regexec</li>
+<li>regfree</li>
+<li>。。。</li>
+</ul>
+</li>
+<li>大概可以在这里了解他：<a target="_blank" rel="noopener" href="https://blog.csdn.net/derkampf/article/details/70661551?ops_request_misc=&request_id=&biz_id=102&utm_term=Regcomp&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-70661551.142%5Ev88%5Econtrol_2,239%5Ev2%5Einsert_chatgpt&spm=1018.2226.3001.4187">网址</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="递归分析表达式！"><a href="#递归分析表达式！" class="headerlink" title="递归分析表达式！"></a>递归分析表达式！</h2><p>哈哈写算法是吧</p>
+<p>PA的实验指导也写的很明白了</p>
+<p>开始把，如果有什么问题我会在这里吐槽的…..</p>
+<p>emm总体来说还是比较顺畅的，但是测试框架居然要自己写！…好吧我继续加油</p>
+<h2 id="关于基础设施的最后一丢丢内容"><a href="#关于基础设施的最后一丢丢内容" class="headerlink" title="关于基础设施的最后一丢丢内容"></a>关于基础设施的最后一丢丢内容</h2><p>要我们去写一个管理检视点内容</p>
+<p>以及对其相关功能的扩充</p>
+<p>我好像没有很理解关于监视点的内容，现在是先粗略的做了一下，之后要用到会再去完善</p>
+<h1 id="PA2"><a href="#PA2" class="headerlink" title="PA2"></a>PA2</h1><h2 id="不停计算的机器"><a href="#不停计算的机器" class="headerlink" title="不停计算的机器"></a>不停计算的机器</h2><p>主要是和我们讲了一些关于”指令周期”的内容</p>
+<ul>
+<li>指令周期<ul>
+<li>取指</li>
+<li>译码</li>
+<li>执行</li>
+<li>最后更新pc</li>
+</ul>
+</li>
+</ul>
+<p>拿出了YEMU帮助理解</p>
+<h2 id="RTFSC-2"><a href="#RTFSC-2" class="headerlink" title="RTFSC(2)"></a>RTFSC(2)</h2><p>我去我看了半个下午还是看的一头浆糊、？？？</p>
+<p>首先PA官方建议阅读ISA手册源码</p>
+<ul>
+<li>什么ISA<ul>
+<li>SA 的全称为 Instruction Set Architecture，即指令集架构。它定义了一组能够被处理器理解和执行的指令集合以及这些指令的格式、操作、寻址模式以及对应的二进制码。</li>
+<li>在 CPU 层面，ISA 是一种约定，即处理器与软件之间的接口规范。软件编写者只需按照 ISA 给出的规范编写指令集，而无需关心硬件实现细节，只要 ISA 规范正确实现，不同的处理器实现可以服从同一个 ISA 规范，从而运行同一个软件代码。</li>
+</ul>
+</li>
+<li>ISA与汇编的关联和区别<ul>
+<li>ISA 和汇编指令是密切相关的，但它们并不完全相同</li>
+<li><strong>ISA</strong> 是一种抽象的计算机系统的构建，它指定了与业务接口相关的所有内容。而<strong>汇编指令</strong>是一种特定架构下的底层指令，它是通过翻译高级语言的语法得到的，与具体的 CPU 架构有很强的关联。<ul>
+<li><strong>汇编指令是基于 ISA 规范的一种更人性化的表示方式，它通常是用助记符来表示操作码及其对应参数</strong></li>
+</ul>
+</li>
+<li><strong>可以把汇编指令理解为 ISA 的一种具体表述方式。在编写汇编代码时，我们是在用一种更方便的方式来表达所对应的 ISA 规范，从而让 CPU 能够正确地识别、执行指令。</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>然后到了主要的地方</strong></p>
+<p>阅读框架的源代码然后自己去扩容实现相关的功能</p>
+<p>现在我们对于ISA和NEMU有了一个基本的认识</p>
+<h2 id="请整理一条指令在NEMU中的执行过程"><a href="#请整理一条指令在NEMU中的执行过程" class="headerlink" title="请整理一条指令在NEMU中的执行过程"></a>请整理一条指令在NEMU中的执行过程</h2><p>这是第一阶段的必须去思考的问题</p>
+<h3 id="粗略的看完这一篇章的理解"><a href="#粗略的看完这一篇章的理解" class="headerlink" title="粗略的看完这一篇章的理解"></a>粗略的看完这一篇章的理解</h3><ul>
+<li>取指令</li>
+<li>译码</li>
+<li>执行</li>
+<li>更新pc</li>
+</ul>
+<h3 id="详细说说"><a href="#详细说说" class="headerlink" title="详细说说"></a>详细说说</h3><p><strong>在这边联系上NEMU中的代码来展开描述</strong></p>
+<p>cpu_exec()函数模拟了cpu的工作运作，在nemu_state.state的状态为running的时候，不断的执行指令，主要依靠不断的循环和：isa_exec_once()函数</p>
+<ul>
+<li>isa_exec_once()<ul>
+<li>在这个函数中，我们可以看到</li>
+<li>首先定义了一个<strong>DecodeExecState类型的结构体变量s</strong><ul>
+<li>用于存放一条指令执行过程中的译码和执行信息</li>
+<li>例如操作数的：类型，宽度，值</li>
+<li>还有一些ISA相关的信息存放在ISADecodeInfo当中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>随后我们将s的地址作为参数送进了 fetch_decode_exec()函数中</p>
+<p><strong>从函数名我们就可以很清楚知到其功能：包揽 取指，译码，执行</strong></p>
+<p>接下来细说这些阶段</p>
+<h4 id="取指令"><a href="#取指令" class="headerlink" title="取指令"></a>取指令</h4><p>NEMU中存在专门取指令的函数：instr_fetch()，从这个函数根据不同的len可以返回不同长度的<strong>vadder_ifetch()(定义在paddr.c中)</strong></p>
+<p>其相关的功能都已经封装好的了</p>
+<p>看做是一次访存就行，毕竟取指令是从内存中取出的</p>
+<h4 id="译码"><a href="#译码" class="headerlink" title="译码"></a>译码</h4><p><strong>目的是得到指令的操作和操作对象</strong></p>
+<p><strong>了解操作行为</strong></p>
+<p>那么怎么操作的呢？ <strong>查看指令的opcode</strong>来决定的，就是看操作码</p>
+<p>取出 <code>opcode</code>之后, 代码通过一个 <code>switch-case</code>语句来进行操作码译码, 这个 <code>switch-case</code>语句就充当了查找表的作用. 为了方便这个查找表的编写, 我们提供了一些宏(在 <code>nemu/include/cpu/exec.h</code>中定义)</p>
+<p><strong>了解你的操作对象</strong></p>
+<p>为了解决这个问题, 代码需要进行进一步的译码工作, 这是通过调用相应的 <code>译码辅助函数</code>(decode helper function)来完成的. 译码辅助函数统一通过宏 <code>def_DHelper</code>(在 <code>nemu/include/cpu/decode.h</code>中定义)来定义:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define def_DHelper(name) void concat(decode_, name) (DecodeExecState *s)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>日后我们也是要自己定义这些译码的函数的,就是用到def_DHelper(name)这个宏</li>
+<li>这样的设计很优秀，对操作数译码和指令译码进行了解耦</li>
+</ul>
+<p>每个译码辅助函数负责进行一种类型的操作数译码,</p>
+<p>把指令中的操作数信息分别记录在译码信息 <code>s</code>的 <code>src</code>成员, <code>src2</code>成员和 <code>dest</code>成员中, 它们分别代表两个源操作数和一个目的操作数.</p>
+<p>那么如何访问他们呢？<code>nemu/include/rtl/rtl.h</code>中定义了三个宏 <code>id_src</code>, <code>id_src2</code>和 <code>id_dest</code>, 用于方便地访问它们.</p>
+<p>如此一来，我们就知道操作什么，也知道怎么去操作了！</p>
+<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><p>接下来会调用相应的执行辅助函数(execution helper function)来进行真正的执行操作. 执行辅助函数统一通过宏 <code>def_EHelper</code>(在 <code>nemu/include/cpu/exec.h</code>中定义)来定义:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define def_EHelper(name) void concat(exec_, name) (DecodeExecState *s)</span><br></pre></td></tr></table></figure>
+
+<p>名字是指令操作本身</p>
+<p><strong>对于mips32和riscv32, 访问内存只能通过特定的访存指令进行</strong>, 因此每条指令的目的操作数类型都是唯一的.</p>
+<h4 id="更新pc"><a href="#更新pc" class="headerlink" title="更新pc"></a>更新pc</h4><p>在每次执行完instr_fetch()指令之后，s-&gt;seq_pc的值都会随之增长，因此当代码从fetch_decode_exec函数返回时，我们能使用update_pc()进行更新即可</p>
+<h3 id="用RTL表示指令的行为"><a href="#用RTL表示指令的行为" class="headerlink" title="用RTL表示指令的行为"></a>用RTL表示指令的行为</h3><h4 id="想法的由来"><a href="#想法的由来" class="headerlink" title="想法的由来"></a>想法的由来</h4><p>x86指令作为一种CISC指令集, 不少指令的行为都比较复杂. 但我们会发现, i386手册会用一些更简单的操作来表示指令的具体行为</p>
+<p><strong>mips32和riscv32的少数较复杂指令也能够进一步进行分解</strong>. 如果我们先实现这些简单操作, 然后再用它们来实现指令, 不就可以<strong>进一步提高代码的复用率</strong>了吗?</p>
+<p><strong>对的，我们对代码进行分解，这是一种结构化的想法，就像我们把程序分为几个函数一样</strong></p>
+<h4 id="相关定义"><a href="#相关定义" class="headerlink" title="相关定义"></a>相关定义</h4><p>在NEMU中, 我们使用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Register_transfer_language">RTL(寄存器传输语言)</a>来描述这些简单的操作</p>
+<ul>
+<li>定义<ul>
+<li>在NEMU中, RTL寄存器统一使用 <code>rtlreg_t</code>来定义, 而 <code>rtlreg_t</code>(在 <code>nemu/include/common.h</code>中定义)其实只是一个 <code>word_t</code>类型</li>
+</ul>
+</li>
+</ul>
+<p><strong>NEMU中, RTL寄存器只有以下这些</strong></p>
+<ul>
+<li>不同ISA的通用寄存器(在 <code>nemu/include/isa/$ISA.h</code>中定义)</li>
+<li><code>id_src</code>, <code>id_src2</code>和 <code>id_dest</code>中的操作数内容 <code>val</code>(在 <code>nemu/include/cpu/decode.h</code>中定义).</li>
+<li>临时寄存器 <code>s0, s1, s2</code>和 <code>t0</code>(在 <code>nemu/include/rtl/rtl.h</code>中定义)</li>
+<li>零寄存器 <code>rz</code>(在 <code>nemu/src/monitor/cpu-exec.c</code>中定义), 它的值总是0</li>
+<li>x86的ISA相关译码信息中的内存基地址 <code>mbr</code></li>
+</ul>
+<h4 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h4><p>NEMU中, RTL指令有两种.</p>
+<p><strong>第一种,RTL基本指令</strong>(在 <code>nemu/src/engine/interpreter/rtl-basic.h</code>中定义), 它们的特点是不需要使用临时寄存器, 可以看做是CPU执行过程中最基本的操作. 不同的ISA都可以使用RTL基本指令, 因此它们属于ISA无关的代码. RTL基本指令包括(我们使用了一些简单的正则表达式记号):</p>
+<ul>
+<li>寄存器-寄存器类型和寄存器-立即数类型的基本算术&#x2F;逻辑运算, 包括 <code>rtl_(add|sub|and|or|xor|shl|shr|sar|setrelop)i?</code>, 它们的定义用到了 <code>nemu/src/engine/interpreter/c_op.h</code>中的C语言运算和 <code>interpret_relop()</code>函数 （interpret relation operator，表示解释关系运算符的函数</li>
+<li>寄存器-寄存器类型的乘除法运算, 包括 <code>rtl_i?(mul_[lo|hi]|div_[q|r])</code>,</li>
+<li>被除数为64位的除法运算 <code>rtl_i?div64_[q|r]</code></li>
+<li>guest内存访问 <code>rtl_lm</code>, <code>rtl_lms</code>和 <code>rtl_sm</code>   即访问喜虚拟机内存，l就是load，s就是store，m就是memory</li>
+<li>host内存访问 <code>rtl_host_lm</code>和 <code>rtl_host_sm</code></li>
+<li>跳转, 包括直接跳转 <code>rtl_j</code>, 间接跳转 <code>rtl_jr</code>和条件跳转 <code>rtl_jrelop</code></li>
+<li>终止程序 <code>rtl_exit</code>(在 <code>nemu/src/monitor/cpu-exec.c</code>中定义)</li>
+</ul>
+<p><strong>第二种，RTL伪指令</strong>，</p>
+<p>通过RTL基本指令或者已经实现的RTL伪指令来实现的. RTL伪指令又分两类, 包括:</p>
+<ul>
+<li>ISA无关的RTL伪指令(在 <code>nemu/include/rtl/pseudo.h</code>中定义), 主要包括一些常用的功能, 如立即数读入 <code>rtl_li</code>, 寄存器传输 <code>rtl_mv</code>, 按位取反 <code>rtl_not</code>, 符号扩展 <code>rtl_sext</code>等, 用于方便RTL的编写</li>
+<li>ISA相关的RTL伪指令(在 <code>nemu/src/isa/$ISA/local-include/rtl.h</code>中定义), 主要包括ISA相关性较强的功能(如x86的通用寄存器访问 <code>rtl_lr</code>和 <code>rtl_sr</code>, 溢出和进&#x2F;借位判断, EFLAGS标志位访问等)</li>
+</ul>
+<h5 id="t为什么需要有host内存访问的RTL指令呢"><a href="#t为什么需要有host内存访问的RTL指令呢" class="headerlink" title="t为什么需要有host内存访问的RTL指令呢?"></a>t为什么需要有host内存访问的RTL指令呢?</h5><p>虚拟机就可以在被隔离的环境中运行，并且可以通过宿主机获得必要的资源和服务，从而实现更加强大和灵活的应用。</p>
+<h3 id="开始我们的代码实现"><a href="#开始我们的代码实现" class="headerlink" title="开始我们的代码实现"></a>开始我们的代码实现</h3><p>这里就是要求我们在nemu上运行这段程序 dummy.c</p>
+<p>以下是反汇编代码</p>
+<p><img src="PA%E8%AE%B0%E5%BD%95/1686464455385.png" alt="1686464455385"></p>
+<ul>
+<li>li<ul>
+<li>很明显是将立即数读取到制定的寄存器当中</li>
+</ul>
+</li>
+<li>auipc<ul>
+<li><p>这是第一个不明确的代码。经过查阅资料得到其功能为：把立即数左移十二位存入指定寄存器中</p>
+</li>
+<li><p>题外话：为什么要移动12位呢？</p>
+<ul>
+<li>这个代码可以与jalr代码配合着使用！</li>
+<li>jalr的立即数只有12位</li>
+<li>，auipc 和 jalr 的组合其实就是伪指令 call 的实际指令。call call offset &#x3D;</li>
+</ul>
+<p>auipc x1, offset[31 : 12] + offset[11]<br>jalr x1, offset<a href="x1">11:0</a></p>
+</li>
+</ul>
+</li>
+<li>addi<ul>
+<li>立即数加法</li>
+</ul>
+</li>
+<li>jal<ul>
+<li>我么要先知道一个概念：符号拓展<ul>
+<li>符号拓展是将有符号的数值拓展到更高位，以保持它的符号不变。对于一个 n 位的有符号数 s，如果其最高位为 1，那么它是一个负数，其数值为 s - 2^n；如果最高位为 0，它是一个正数，其数值等于 s 。</li>
+<li>例如，假设我们需要将一个 8 位的数值 0b11011101（或者 -35）符号扩展到 16 位。首先，我们需要检查其中的最高位是否为 1。由于最高位为 1，我们知道这是一个负数。接下来，我们将其余的位复制到高8位，形成一个 16 位的负数，即 0xFFFFDCCB。由此可见，在拓展过程中，需要将原数的符号位复制到所有高阶的位上，以确保它的符号不变。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>jalr<ul>
+<li>一般是用作返回时候</li>
+<li>以及函数结束时</li>
+</ul>
+</li>
+</ul>
+<p>在完成了这几个功能之后，我们就得到了成功的结果啦！</p>
+<p><img src="PA%E8%AE%B0%E5%BD%95/1686658946283.png" alt="1686658946283"></p>
+<h2 id="程序，运行时环境和AM"><a href="#程序，运行时环境和AM" class="headerlink" title="程序，运行时环境和AM"></a>程序，运行时环境和AM</h2><h3 id="运行时环境概述"><a href="#运行时环境概述" class="headerlink" title="运行时环境概述"></a>运行时环境概述</h3><p>一个事实是, 应用程序的运行都需要<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Runtime_system">运行时环境</a>的支持, 包括加载, 销毁程序, 以及提供程序运行时的各种动态链接库(你经常使用的库函数就是运行时环境提供的)等.</p>
+<p>为了让客户程序在NEMU中运行, 现在轮到你来提供相应的运行时环境的支持了.</p>
+<p>我们在PA1中或者刚才的实验中就以及经得到了对于最简单程序以及运行时环境的感悟了</p>
+<ul>
+<li>最简单程序的运行，即最简单程序的运行<ul>
+<li>内存</li>
+<li>结束运行的方式</li>
+<li>正确的指令</li>
+</ul>
+</li>
+</ul>
+<h3 id="运行环境封装成库函数"><a href="#运行环境封装成库函数" class="headerlink" title="运行环境封装成库函数"></a>运行环境封装成库函数</h3><p>刚擦讨论的运行环境是基于硬件的，是与架构相关的。<strong>我们用”ISA-平台”</strong> 来表述一个架构，如riscv32-nemu。</p>
+<p>.以程序结束为例, NEMU中是使用人为添加的 <code>nemu_trap</code>指令, 而不同ISA的 <code>nemu_trap</code>指令的格式肯定不同</p>
+<p>但如果我们自己用verilog设计了一个riscv32 CPU, 这个 <code>riscv32-mycpu</code>的架构, 有可能是通过一条 <code>mycpu_trap</code>指令来结束程序</p>
+<p>这个和nemu_trap很大概率不同，那么我们难道在同程序不同架构中都需要去维护不同的退出代码吗？？？？</p>
+<p>这很显然不合适对吧哈哈</p>
+<p>对于同一个程序, 如果能把 <code>m</code>个版本不同的部分都转换成相同的代码, 我们就只需要维护一个版本就可以了. 而实现这个目标的杀手锏, 就是你在程序设计课上学过的抽象!</p>
+<p>只需要定义一个结束程序的API, 比如 <code>void halt()</code>, 它对不同架构上程序的不同结束方式进行了抽象</p>
+<p>我们就只需要维护这一个通过 <code>halt()</code>来结束运行的版本就可以了. 然后, 不同的架构分别实现自己的 <code>halt()</code>, 就可以支撑 <code>n</code>个程序的运行! 这样以后, 我们就可以把程序和架构解耦了: 我们只需要维护 <code>n+m</code>份代码(<code>n</code>个程序和 <code>m</code>个架构相关的 <code>halt()</code>), 而不是之前的 <code>n*m</code>.</p>
+<h4 id="库的思想"><a href="#库的思想" class="headerlink" title="库的思想"></a>库的思想</h4><p>例子也展示了运行时环境的一种普遍的存在方式: 库. 通过库, 运行程序所需要的公共要素被抽象成API, 不同的架构只需要实现这些API, 也就相当于实现了支撑程序运行的运行时环境, 这提升了程序开发的效率: 需要的时候只要调用这些API, 就能使用运行时环境提供的相应功能.</p>
+<h3 id="AM-裸机-运行时环境"><a href="#AM-裸机-运行时环境" class="headerlink" title="AM - 裸机 运行时环境"></a>AM - 裸机 运行时环境</h3><p>应用程序的运行都需要运行时环境的支持; 另一方面, 只进行纯粹计算任务的程序在TRM上就可以运行,</p>
+<p>更复杂的应用程序对运行时环境必定还有其它的需求：比如输入输出来和用户交互，或者一个小的操作系统，甚至更高级的功能</p>
+<p>如果我们把这些需求都收集起来, 将它们抽象成统一的API提供给程序, 这样我们就得到了一个可以支撑各种程序运行在各种架构上的库了!</p>
+<p>每个架构都按照它们的特性实现这组API; 应用程序只需要直接调用这组API即可, 无需关心自己将来运行在哪个架构上</p>
+<p>这组统一抽象的API代表了程序运行对计算机的需求，所以我们把这组API成为抽象计算机</p>
+<p><strong>AM(Abstract machine)项目就是这样诞生的</strong>. 作为一个向程序提供运行时环境的库, AM根据程序的需求把库划分成以下模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AM = TRM + IOE + CTE + VME + MPE</span><br></pre></td></tr></table></figure>
+
+<p>得益于AM，让NEMU模拟的硬件层和APP层更加泾渭分明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(在NEMU中)实现硬件功能 -&gt; (在AM中)提供运行时环境 -&gt; (在APP层)运行程序</span><br><span class="line">(在NEMU中)实现更强大的硬件功能 -&gt; (在AM中)提供更丰富的运行时环境 -&gt; (在APP层)运行更复杂的程序</span><br></pre></td></tr></table></figure>
+
+<p>先驱希望创造一个计算机的世界, 并赋予它执行程序的使命. 亲自搭建NEMU(硬件)和AM(软件)之间的桥梁来支撑程序的运行, 是”理解程序如何在计算机上运行”这一终极目标的不二选择.</p>
+<h3 id="RTFSC"><a href="#RTFSC" class="headerlink" title="RTFSC"></a>RTFSC</h3><p>从这里开始我们要把视线转换到AM中，如果说NEMU提供了关于硬件的模拟，那么AM就是提供了关于运行时环境的库</p>
+<ul>
+<li>我们可以把AM分为两部分</li>
+<li>一部分<ul>
+<li>关于不同架构的AM API实现，在abstract-machine&#x2F;am&#x2F;，目前主要关注NEMU相关的内容</li>
+<li>abstract-machine&#x2F;am&#x2F;include&#x2F;am.h声明了所有的API，后续会用到</li>
+</ul>
+</li>
+<li>二部分<ul>
+<li><code>abstract-machine/klib/</code> - 一些架构无关的库函数, 方便应用程序的开发</li>
+</ul>
+</li>
+</ul>
+<p>我们继续看abstract-machine&#x2F;am&#x2F;src&#x2F;nemu&#x2F;trm.c，发现只需要一下几个API就可支撑程序在TRM上运行了</p>
+<ul>
+<li><code>Area heap</code>结构用于指示堆区的起始和末尾</li>
+<li><code>void putch(char ch)</code>用于输出一个字符</li>
+<li><code>void halt(int code)</code>用于结束程序的运行</li>
+<li><code>void _trm_init()</code>用于进行TRM相关的初始化工作</li>
+</ul>
+<p>堆区是给程序自由使用的一段内存区间, 为程序提供动态分配内存的功能. TRM的API只提供堆区的起始和末尾, 而堆区的分配和管理需要程序自行维护.</p>
+<p>最后来看看 <code>halt()</code>. <code>halt()</code>里面调用了 <code>nemu_trap()</code>宏(在 <code>abstract-machine/am/src/nemu/include/nemu.h</code>中定义),</p>
+<p>这个宏展开之后是一条<a target="_blank" rel="noopener" href="http://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html">内联汇编</a>语句, 内联汇编语句允许我们在C代码中嵌入汇编语句</p>
+<p>这个宏的定义是和ISA相关的. 同时, 这条指令和我们常见的汇编指令不一样(例如 <code>movl $1, %eax</code>), 它是直接通过指令的二进制编码给出的</p>
+<h4 id="AM-kernel"><a href="#AM-kernel" class="headerlink" title="AM-kernel"></a>AM-kernel</h4><p><code>am-kernels</code>子项目用于收录一些可以在AM上运行的测试集和简单程序:</p>
+<p>在让NEMU运行客户程序之前, 我们需要将客户程序的代码编译成可执行文件.</p>
+<p>需要说明的是, 我们不能使用gcc的默认选项直接编译, 因为默认选项会根据GNU&#x2F;Linux的运行时环境将代码编译成运行在GNU&#x2F;Linux下的可执行文件.</p>
+<p>但此时的NEMU并不能为客户程序提供GNU&#x2F;Linux的运行时环境, 在NEMU中无法正确运行上述可执行文件, 因此我们不能使用gcc的默认选项来编译用户程序.</p>
+<p><strong>怎么解决这个问题？</strong></p>
+<p>解决这个问题的方法是<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Cross_compiler">交叉编译</a></p>
+<p>需要在GNU&#x2F;Linux下根据AM的运行时环境编译出能够在 <code>$ISA-nemu</code>这个新环境中运行的可执行文件. 为了不让链接器ld使用默认的方式链接, 我们还需要提供描述 <code>$ISA-nemu</code>的运行时环境的链接脚本</p>
+<p>上述编译和链接选项主要位于 <code>abstract-machine/Makefile</code> 以及 <code>abstract-machine/scripts/</code>目录下的相关 <code>.mk</code>文件中. 编译生成一个可以在NEMU的运行时环境上运行的程序的过程大致如下:</p>
+<ul>
+<li>gcc将 <code>$ISA-nemu</code>的AM实现源文件编译成目标文件, 然后通过ar将这些目标文件作为一个库, 打包成一个归档文件 <code>abstract-machine/am/build/am-$ISA-nemu.a</code><ul>
+<li>gcc我知道，那么什么是ar？<ul>
+<li><code>ar</code>是Unix&#x2F;Linux下的一个工具，用于将一组文件打包成一个归档文件，也就是一种静态库文件（static library）。gcc把应用程序源文件(如 <code>am-kernels/tests/cpu-tests/tests/dummy.c</code>)编译成目标文件</li>
+<li><code>ar</code>可以创建、修改和提取归档文件中的成员文件，以及向归档文件添加、删除和列出成员。使用 <code>ar</code>打包的静态库可以被链接器链接到目标程序中，方便程序员进行代码复用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过gcc和ar把程序依赖的运行库(如 <code>abstract-machine/klib/</code>)也编译并打包成归档文件</li>
+<li>根据Makefile文件 <code>abstract-machine/scripts/$ISA-nemu.mk</code>中的指示, 让ld根据链接脚本 <code>abstract-machine/am/src/nemu/isa/$ISA/boot/loader.ld</code>, 将上述目标文件和归档文件链接成可执行文件</li>
+</ul>
+<h3 id="运行更多的程序"><a href="#运行更多的程序" class="headerlink" title="运行更多的程序"></a>运行更多的程序</h3><p>啊哈，遵循上面的方式来进行对riscv32指令识别数量的增加</p>
+<p>在熟悉之后就是机械化的找bug和对新功能进行实现了</p>
+<h3 id="实现常用的库函数"><a href="#实现常用的库函数" class="headerlink" title="实现常用的库函数"></a>实现常用的库函数</h3><p>就是自己去实现printf，sprintf等函数，在这里只要实现对%d和%c的识别即可</p>
+<p>需要用到&lt;stdarg.h&gt;</p>
+<p>类似 <code>memcpy()</code>这种常用的函数应该归入这部分, <code>abstract-machine/klib/</code>用于收录这些架构无关的库函数. <code>klib</code>是 <code>kernel library</code>的意思, 用于提供一些兼容libc的基础功能. 框架代码在 <code>abstract-machine/klib/src/string.c</code>和 <code>abstract-machine/klib/src/stdio.c</code> 中列出了将来可能会用到的库函数, 但并没有提供相应的实现.</p>
+<h3 id="重新认识计算机"><a href="#重新认识计算机" class="headerlink" title="重新认识计算机"></a>重新认识计算机</h3><p>我们先来讨论在TRM上运行的程序, 我们对这些程序的需求进行分类, 来看看我们的计算机系统是如何支撑这些需求的.</p>
+<p><img src="PA%E8%AE%B0%E5%BD%95/1687685145833.png" alt="1687685145833"></p>
+<ul>
+<li>计算. 这是程序最基本的需求, 以至于它甚至不属于运行时环境和AM的范畴. 所有计算相关的代码(顺序语句, 分支, 循环, 函数调用等), 都会被编译器编译成功能等价的指令序列, 最终在CPU上执行. 在NEMU中, 我们通过 <code>fetch_decode_exec()</code>这个函数以及相应的辅助函数来实现”CPU执行指令”的功能.</li>
+<li>内存申请. 有的程序需要在运行时刻动态地申请内存来使用. 和libc类似, klib提供了 <code>malloc()</code>和 <code>free()</code>来实现内存的动态管理(你将来会实现它们), 它们又会使用TRM中提供的API <code>heap</code>来获得堆区的起始和末尾. 而 <code>heap</code>的区间又是由ISA-平台这个二元组对应的物理内存地址空间来决定的. 这一地址空间对应着物理内存的大小, 在NEMU中, 它就是大数组 <code>pmem[]</code>的大小.</li>
+<li>结束运行. 一般程序都会有结束运行的时候, TRM提供了一个 <code>halt()</code>的API来实现这一功能. 由于这个需求过于简单, 因此无需运行时环境提供更复杂的接口. <code>halt()</code>的具体实现和ISA有关, 我们使用了人为添加的 <code>nemu_trap</code>指令来实现这一点. 执行 <code>nemu_trap</code>指令会让NEMU从CPU执行指令的循环中跳出, 返回到Monitor中, 这是通过设置Monitor中的一个状态变量 <code>nemu_state</code>来实现的.</li>
+<li>打印信息. 输出是程序的另一个基本需求. 程序可以调用klib中的 <code>printf()</code>来输出, 它会通过TRM的API <code>putch()</code>来输出字符. 不同的ISA-平台有不同的字符输出方式, 在$ISA-nemu中, <code>putch()</code>通过I&#x2F;O相关的指令把字符写入到串口, 最终在NEMU中通过 <code>serial_io_handler()</code>将字符打印到终端. 关于输入输出的更多细节会在PA2的最后部分进行介绍.</li>
+</ul>
+<h2 id="基础设施"><a href="#基础设施" class="headerlink" title="基础设施"></a>基础设施</h2><p>在上一节的编写中我们写了stirng库函数，但是在调试的过程我们发现了一个问题：</p>
+<ul>
+<li>软件和硬件都是自己写的，debug很难知到是软件错了，还是硬件错了？</li>
+</ul>
+<p>我们可以用<strong>控制变量法,</strong> 比如我们在真机上对klib进行测试, 如果测试没通过, 那就说明是klib的问题, 因为我们可以相信真机的硬件实现永远是对的; 相反, 如果测试通过了, 那就说明klib没有问题, 而是NEMU有bug.</p>
+<p>一个新的问题是, 我们真的可以很容易地把软件移植到其它硬件上进行测试吗?</p>
+<ul>
+<li>通过am的核心思想来解决！<ul>
+<li>通过一组抽象的API把程序和架构解耦. AM的思想保证了运行在AM之上的代码(包括klib)都是架构无关的, 这恰恰增加了代码的可移植性</li>
+<li><code>abstract-machine</code>中有一个特殊的架构叫 <code>native</code>，用GNU&#x2F;Linux默认的运行时环境来实现的AM API</li>
+</ul>
+</li>
+</ul>
+<p>和 <code>$ISA-nemu</code>相比, <code>native</code>有如下好处:</p>
+<ul>
+<li>直接运行在真机上, 可以相信真机的行为永远是对的</li>
+<li>就算软件有bug, 在 <code>native</code>上调试也比较方便(例如可以使用GDB, 比NEMU的monitor方便很多)</li>
+</ul>
+<p>我们可以通过在 <code>abstract-machine/klib/include/klib.h</code> 中通过定义宏 <code>__NATIVE_USE_KLIB__</code>来把库函数链接到klib. 如果不定义这个宏, 库函数将会链接到glibc</p>
+<p>为什么定义宏 <code>__NATIVE_USE_KLIB__</code>之后就可以把 <code>native</code>上的这些库函数链接到klib?</p>
+<p>链接分为静态链接和动态链接。静态链接是在编译时将所有目标文件和库文件链接成一个单独的可执行文件，态链接是在运行时才进行链接。在动态链接中，共享库文件的链接时机是在程序启动时，操作系统会根据程序中引用的共享库来加载库文件，通过动态链接将函数库加载到内存中，并与程序进行链接。而在本例中，当定义宏__NATIVE_USE_KLIB__时，编译时就会进行静态链接，在编译时就将native上的库函数链接到klib中，从而使得klib中的代码可以访问和使用native上的函数库。</p>
+<h3 id="小插曲"><a href="#小插曲" class="headerlink" title="小插曲"></a>小插曲</h3><p>呃呃我在把diff-test做完之前我就已经把cpu-test给全部过掉了</p>
+<p>所以关于REF和DUT的基础设施这个我先放着吧，如果之后有需要我会再回头来把这个给完成了</p>
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>在真是的计算机中，输入输出都是通过访问I&#x2F;O设备来完成的</p>
+<h3 id="设备与CPU"><a href="#设备与CPU" class="headerlink" title="设备与CPU"></a>设备与CPU</h3><p>事实上, 只要向设备发送一些有意义的数字信号, 设备就会按照这些信号的含义来工作. 让一些信号来指导设备如何工作, 这不就像”程序的指令指导CPU如何工作”一样吗?</p>
+<p>恰恰就是这样! 设备也有自己的状态寄存器(相当于CPU的寄存器), 也有自己的功能部件(相当于CPU的运算器)</p>
+<p>键盘有一个把按键的模拟信号转换成扫描码的部件, 而VGA则有一个把像素颜色信息转换成显示器模拟信号的部件</p>
+<p>设备的工作就是负责接收命令字, 并进行译码和执行</p>
+<p>并且，<strong>除了纯粹的数据读写之外，我们还需要对设备进行控制，比如需要获取键盘控制器的状态查看当前是否有按键被按下；或者是需要有方式可以查询或设置VGA控制器的分辨率</strong></p>
+<p><strong>我们要把访问设备的任务交给CPU！</strong></p>
+<p>首当其冲的问题是，这些访问设备的任务对于CPU来说到底意味着什么呢？？？</p>
+<p> 具体要从哪里读数据? 把数据写入到哪里? 如何查询&#x2F;设置设备的状态? 一个最本质的问题是, CPU和设备之间的接口, 究竟是什么?</p>
+<ul>
+<li>一种最简单的方法：<ul>
+<li>把设备的寄存器作为接口，让CPU访问这些寄存器，比如CPU可以从&#x2F;往设备的寄存器中读写数据，进行数据的输入输出可以从设备的状态寄存器中读出设备的状态，询问设备是否忙碌，或者往设备的命令寄存器中写入命令字，来修改设备的状态</li>
+<li>我们也可以给设备中允许CPU访问的寄存器逐一编号, 然后通过指令来引用这些编号！就像我们对CPU的寄存器的行为那样！</li>
+</ul>
+</li>
+</ul>
+<p><strong>以上，就是CPU的编址方式！，因此这些编号也被称为设备的地址</strong>，然后介绍两种常用的编址方式</p>
+<h3 id="端口I-O"><a href="#端口I-O" class="headerlink" title="端口I&#x2F;O"></a>端口I&#x2F;O</h3><p><strong>一种I&#x2F;O编址方式是端口映射I&#x2F;O(port-mapped I&#x2F;O), CPU使用专门的I&#x2F;O指令对设备进行访问, 并把设备的地址称作端口号. 有了端口号以后, 在I&#x2F;O指令中给出端口号, 就知道要访问哪一个设备寄存器了.</strong></p>
+<p>这是一个X86的例子：</p>
+<p>x86提供了 <code>in</code>和 <code>out</code>指令用于访问设备, 其中 <code>in</code>指令用于将设备寄存器中的数据传输到CPU寄存器中, <code>out</code>指令用于将CPU寄存器中的数据传送到设备寄存器中. 一个例子是使用 <code>out</code>指令给串口发送命令字:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movl $0x41, %al</span><br><span class="line">movl $0x3f8, %edx</span><br><span class="line">outb %al, (%dx)</span><br></pre></td></tr></table></figure>
+
+<p>但对CPU来说, 它并不关心设备会怎么处理0x41这个数据, 只会老老实实地把0x41传送到0x3f8号端口. 事实上, 设备的API及其行为都会在相应的文档里面有清晰的定义, 在PA中我们无需了解这些细节,只需要知道, 驱动开发者可以通过RTFM, 来编写相应程序来访问设备即可.</p>
+<p>API, 行为, RTFM… 没错, 我们又再次看到了计算机系统设计的一个例子: 设备向CPU暴露设备寄存器的接口, 把设备内部的复杂行为(甚至一些模拟电路的特性)进行抽象, CPU只需要使用这一接口访问设备, 就可以实现期望的功能.</p>
+<h3 id="内存映射I-O"><a href="#内存映射I-O" class="headerlink" title="内存映射I&#x2F;O"></a>内存映射I&#x2F;O</h3><p>端口映射I&#x2F;O把端口号作为I&#x2F;O指令的一部分, 这种方法很简单, 但同时也是它最大的缺点.</p>
+<p>这意味着, 端口映射I&#x2F;O所能访问的I&#x2F;O地址空间的大小, 在设计I&#x2F;O指令的那一刻就已经决定下来了.</p>
+<p>那么如果之后随着设备的发展我们需要更多的I&#x2F;O端口怎么办？</p>
+<p>比如：的设备需要让CPU访问一段较大的连续存储空间, 如VGA的显存, 24色加上Alpha通道的1024x768分辨率的显存就需要3MB的编址范围.这是不能满足的</p>
+<p><strong>于是内存映射I&#x2F;O(memory-mapped I&#x2F;O, MMIO)应运而生</strong></p>
+<h4 id="行为"><a href="#行为" class="headerlink" title="行为"></a>行为</h4><p>它是通过不同的物理内存地址给设备编址的. 这种编址方式将一部分物理内存的访问”重定向”到I&#x2F;O地址空间中,</p>
+<p>CPU尝试访问这部分物理内存的时候, 实际上最终是访问了相应的I&#x2F;O设备, CPU却浑然不知</p>
+<p>这样CPU就可以用普通指令来访问设备了</p>
+<p>内存映射I&#x2F;O成为了现代计算机主流的I&#x2F;O编址方式: RISC架构只提供内存映射I&#x2F;O的编址方式, 而PCI-e, 网卡, x86的APIC等主流设备, 都支持通过内存映射I&#x2F;O来访问.</p>
+<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><p>也许你从来都没听说过C语言中有 <code>volatile</code>这个关键字, 但它从C语言诞生开始就一直存在. <code>volatile</code>关键字的作用十分特别, 它的作用是避免编译器对相应代码进行优化</p>
+<p>如下代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void fun() &#123;</span><br><span class="line">  extern unsigned char _end;  // _end是什么?</span><br><span class="line">  volatile unsigned char *p = &amp;_end;</span><br><span class="line">  *p = 0;</span><br><span class="line">  while(*p != 0xff);</span><br><span class="line">  *p = 0x33;</span><br><span class="line">  *p = 0x34;</span><br><span class="line">  *p = 0x86;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，<code>volatile</code> 关键字的作用是指示变量 <code>p</code> 应被视为易变的，其值可能会在任何时候更改，即使看起来没有任何代码更改它。</p>
+<p>将 <code>p</code> 声明为 <code>volatile</code> 的原因是它指向的内存位置可能会被硬件或其他代码用于信号事件或提供信息。在这种情况下，该代码正在等待 <code>p</code> 所引用的内存位置被设置为 <code>0xff</code>，这可能是由某些外部事件完成的。</p>
+<p>如果不使用 <code>volatile</code>，编译器可能会对代码进行优化，使它在 while 循环中跳过对 <code>p</code> 的读取，这将破坏其预期的行为。因此，去掉 <code>volatile</code> 关键字可能会导致代码行为不正确，假定 <code>p</code> 的值不会出现意外更改。</p>
+<p><strong>思考一下, 如果代码中p指向的地址最终被映射到一个设备寄存器, 去掉volatile可能会带来什么问题?</strong></p>
+<ol>
+<li>编译器可能会对代码进行优化，将对 <code>p</code> 的读取操作缓存到寄存器中，导致任何对该地址的一连串写入操作都没法及时被读取到，从而导致预期之外的行为。</li>
+<li>设备寄存器通常是由其他的硬件模块或中断处理程序对其进行写入操作。这种写入操作的发生时间是不可预知的，而且可能在任何时候发生。如果去掉了 <code>volatile</code>，则编译器可能会将所有的读取和写入操作进行了优化，使得程序不能及时得知寄存器的变化情况，导致出现错误的结果。</li>
+</ol>
+<h3 id="状态机视角下的输入输出"><a href="#状态机视角下的输入输出" class="headerlink" title="状态机视角下的输入输出"></a>状态机视角下的输入输出</h3><p>我们可以把设备看成两部分</p>
+<ol>
+<li>数字电路<ol>
+<li>例如我们C<strong>PU可以从键盘控制器中读出按键信息</strong>. 既然是<strong>数字电路</strong>, 我们就可以把其中的时序逻辑电路看成是设备数字电路部分的状态 <code>D</code>. 但 <code>D</code>比较特殊, 计算机只能通过端口I&#x2F;O指令或者内存映射I&#x2F;O的访存指令来访问和修改 <code>D</code>.</li>
+</ol>
+</li>
+<li>模拟电路<ol>
+<li>它也可以改变 <code>D</code>. 例如键盘通过<strong>检查按键位置的电容变化来判断是否有按键被按下</strong>, 若有, 则会将按键信息写入到键盘控制器的寄存器中. 而按键位置的电容是否发生变化, 又是由物理世界中的用户是否按下按键决定的. 所以我们会说, <strong>设备是连接计算机和物理世界的桥梁.</strong></li>
+</ol>
+</li>
+</ol>
+<p>于是, 我们在对状态机模型的行为进行扩展的时候, 并不考虑将 <code>D</code>加入到 <code>S</code>中, 而是仅仅对输入输出相关指令的行为进行建模，</p>
+<p>即把普通指令和与执行设备输如输出的指令分开</p>
+<ul>
+<li>输出<ul>
+<li>状态机除了更新PC之外, 其它状态均保持不变, 但设备的状态和物理世界则会发生相应的变化</li>
+</ul>
+</li>
+<li>输入<ul>
+<li>状态机的转移将会”分叉”: 状态机不再像TRM那样有唯一的新状态了, 状态机具体会转移到哪一个新状态, 将取决于执行这条指令时设备的状态</li>
+</ul>
+</li>
+</ul>
+<p><img src="PA%E8%AE%B0%E5%BD%95/1687767869123.png" alt="1687767869123"></p>
+<p>上图中的程序将要执行指令 <code>in addr, r</code>, 这条指令将会从设备地址 <code>addr</code>中读入一个数据到CPU的寄存器 <code>r</code>中</p>
+<p>执行这条指令之后, <code>r</code>中的值可能是 <code>0x01</code>, 表示读到”按下扫描码为1的按键”的信息; 也可能是 <code>0x81</code>, 表示读到”释放扫描码为1的按键”的信息; 也可能是 <code>0x0</code>, 表示没有任何按键信息.（<strong>这就是不确定</strong></p>
+<p>确定的状态转移会影响到后续程序的运行, 例如某个游戏会根据读入的按键信息决定如何响应</p>
+<p>输入输出对程序的影响也仅仅体现在输入时会进行一次不能提前确定的状态转移, <strong>这基本上就是程序眼中输入输出的全部.</strong></p>
+<h3 id="NEMU中的输入输出"><a href="#NEMU中的输入输出" class="headerlink" title="NEMU中的输入输出"></a>NEMU中的输入输出</h3><p>NEMU框架代码中已经提供了设备的代码, 位于 <code>nemu/src/device/</code>目录下.</p>
+<p>NEMU实现了端口映射I&#x2F;O和内存映射I&#x2F;O两种I&#x2F;O编址方式. 但无论是端口映射I&#x2F;O还是内存映射I&#x2F;O, 它们的核心都是映射. 自然地, 我们可以通过对映射的管理来将这两者统一起来.</p>
+<h4 id="映射和I-O方式"><a href="#映射和I-O方式" class="headerlink" title="映射和I&#x2F;O方式"></a>映射和I&#x2F;O方式</h4><h4 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h4><p>NEMU实现了串口, 时钟, 键盘, VGA和声卡五种设备. 为了简化实现, 这些设备都是不可编程的, 而且只实现了在NEMU中用到的功能.</p>
+<p>我们要注意一下问题</p>
+<ul>
+<li>NEMU用SDL库来实现设备的模拟</li>
+<li>device.文件中有初始化函数<ul>
+<li>对五个设备进行初始化</li>
+<li>其中在初始化VGA时还会进行一些和SDL相关的初始化工作</li>
+<li>然后对定时器(alarm)进行初始化<ul>
+<li>需要认识一下函数</li>
+<li>. 首先注册一个定时器处理函数 <code>set_device_update_flag()</code>,  函数设置一个设备更新标志就返回了</li>
+<li>然后通过 <code>init_alarm()</code>注册一个60Hz的定时器</li>
+<li>每隔1&#x2F;60秒就会调用一次 <code>alarm_sig_handler()</code>函数.<ul>
+<li>这个函数会依次调用之前注册的所有定时器处理函数</li>
+<li>目前只有 <code>set_device_update_flag()</code>函数会被调用.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>, <code>cpu_exec()</code>在执行每条指令之后就会调用 <code>device_update()</code>函数, 这个函数会检查设备更新标志是否被设置, 若是, 则会尝试刷新屏幕, 并进一步检查是否有按键按下&#x2F;释放</li>
+<li>以及是否点击了窗口的 <code>X</code>按钮; 否则则直接返回</li>
+<li>对了它只会在NEMU处于用户态的时候进行计时<ul>
+<li>ps：如果NEMU进行大量输出的清苦下计时器的计时将变得缓慢，所以调式的时候就尽量不免大量输入输出把！</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何在NEMU中加入新功能？<ul>
+<li>你只需要在 <code>nemu/include/common.h</code>中定义宏 <code>HAS_IOE</code></li>
+<li>重新编译后, 你会看到运行NEMU时会弹出一个新窗口, 用于显示VGA的输出</li>
+</ul>
+</li>
+</ul>
+<h3 id="将输入输出抽象成IOE"><a href="#将输入输出抽象成IOE" class="headerlink" title="将输入输出抽象成IOE"></a>将输入输出抽象成IOE</h3><p>对于设备的具体访问是和架构(这里的架构是指代计算机的体系结构，也就是硬件实现，在这里当然是NEMU啦)相关的，</p>
+<ul>
+<li>比如NEMU的VGA显存位于物理地址区间 <code>[0xa0000000, 0xa1000000)</code>, 但对 <code>native</code>的程序来说, 这是一个不可访问的非法区间<ul>
+<li>，因为它们所运作的计算机体系结构与NEMU所模拟的不同，所以无法通过该地址访问到VGA显存</li>
+</ul>
+</li>
+<li>所以native程序需要其他方式来实现类似的功能，设备访问架构的功能就应该放入AM中啦！</li>
+</ul>
+<p>设备访问是为计算机提供输入输出的功能, 因此我们把它们划入一类新的API, 名字叫IOE(I&#x2F;O Extension).</p>
+<h4 id="如何对不同架构的设备访问抽象成统一的API呢"><a href="#如何对不同架构的设备访问抽象成统一的API呢" class="headerlink" title="如何对不同架构的设备访问抽象成统一的API呢"></a>如何对不同架构的设备访问抽象成统一的API呢</h4><p>访问设备 &#x3D; 读出数据 + 写入数据 + 控制状态. 进一步的, 控制状态本质上也是读&#x2F;写设备寄存器的操作, 所以访问设备 &#x3D; 读&#x2F;写操作.</p>
+<p>所以只要三个API就够了！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bool ioe_init();</span><br><span class="line">void ioe_read(int reg, void *buf);</span><br><span class="line">void ioe_write(int reg, void *buf);</span><br></pre></td></tr></table></figure>
+
+<p>你会发现，读写都是往寄存器里操作的</p>
+<p><strong>注意！！这里的reg寄存器并不是指代上文讨论的设备寄存器</strong></p>
+<p>设备寄存器的编号是架构相关的，这里我们希望费用一中架构无关的抽象的寄存器来代表<strong>某个功能</strong>，哦是的，这是一个功能编号！</p>
+<p>我们约定在不同的架构中, 同一个功能编号的含义也是相同的, 这样就实现了设备寄存器的抽象.</p>
+<p><code>abstract-machine/am/include/amdev.h</code>中定义了常见设备的”抽象寄存器”编号和相应的结构. 这些定义是架构无关的, 每个架构在实现各自的IOE API时, 都需要遵循这些定义(约定)</p>
+<p>klib中提供了 <code>io_read()</code>和 <code>io_write()</code>这两个宏, 它们分别对 <code>ioe_read()</code>和 <code>ioe_write()</code>这两个API进行了进一步的封装.</p>
+<p>NEMU作为一个平台, 设备的行为是与ISA无关的, 因此我们只需要在 <code>abstract-machine/am/src/nemu/ioe/</code>目录下实现一份IOE, 来供NEMU平台的架构共享. 其中, <code>abstract-machine/am/src/nemu/ioe/ioe.c</code>中实现了上述的三个IOE API, <code>ioe_read()</code>和 <code>ioe_write()</code>都是通过抽象寄存器的编号索引到一个处理函数, 然后调用它</p>
+<h3 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h3><p>什么是串口？</p>
+<p>串口是最简单的输出设备！</p>
+<p>串口是计算机通信中常见的一种通信方式，它是一种基础的数据传输接口，用于通过串行通信传输数据。串口通信可以在计算机与外部设备之间传输数据，如键盘，鼠标，打印机和其他外部设备。串口可以控制数据流和读取数据，因此它在许多应用程序中非常常用</p>
+<p>串口通常有一些控制线，可以控制数据流和发送、接收数据</p>
+<p>所以我可以这样认为吗？<strong>串口是用来在计算机和设备之间传送数据的通道</strong></p>
+<p>串口初始化时会分别注册 <code>0x3F8</code>处长度为1个字节的端口, 以及 <code>0xa10003F8</code>处长度为1字节的MMIO空间,</p>
+<h3 id="时钟"><a href="#时钟" class="headerlink" title="时钟"></a>时钟</h3><p>我去要死了这个玩意搞了我一晚上加半天白天</p>
+<p>最后在测试中发现这个其实不是我在AM中携带软件的原因</p>
+<p>实在nemu中译码器少了对于DIVU这个指令的译码，所以没能成功的对时间进行判定</p>
+<p>不然其实逻辑不难</p>
+<p>内存映射就是像接口的一样的东西，我们运用的时候不需要知到后面是什么东西，只要只能能从中拿出什么就行了~</p>
+<p>所以inl(RTC_ADDR)就可以拿出低4字节的内容</p>
+<p>inl(RTC_ADDR)拿出高4字节的内容！</p>
+<p>然后对其进行整理即可</p>
+<h4 id="跑分"><a href="#跑分" class="headerlink" title="跑分"></a>跑分</h4><p>得益于risc指令集简单的上手难度和强劲的性能，还是不错的，纯算力的情况下有i7-7700k 二百分之一的算力</p>
+<p>综合起来有一百到五十分之一的性能</p>
+<p>还是挺开心~</p>
+<p>中途出了点错</p>
+<p>还是译码的问题，remu的译码没有实现，所以有些算法失败了，实现译码后运行陈宫~</p>
+<h3 id="键盘映射"><a href="#键盘映射" class="headerlink" title="键盘映射"></a>键盘映射</h3><p>在进行了对时钟模块的折磨之后这里也是大同小异了</p>
+<p>可以对其进行进一步优化就是了(比如考虑检测多个键同时被按下)</p>
+<p>实现可以参考native里面的代码</p>
+<p>运行完成就可以操作超级马里奥啦~</p>
+<h3 id="VGA"><a href="#VGA" class="headerlink" title="VGA"></a>VGA</h3><p>充当显卡的功能，我们主要就是完成AM_GPU_FBDRAW的功能，用来帮助屏幕刷新和填充像素格</p>
+<h3 id="声卡-选做"><a href="#声卡-选做" class="headerlink" title="声卡(选做)"></a>声卡(选做)</h3><p>请阅读文档~</p>
+<p>哦难怪是选座，NEMU部分也要自己去实现了</p>
+<p>要用到SDL库</p>
+<p>。。。参考了别人的代码</p>
+<p>但是我觉得奇怪的点是：为什么测试可以跑，但是运行超级马里奥就会卡死呢</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Big_Swag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/post/110fe971.html">http://example.com/post/110fe971.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PA/">PA</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/c54fe8f0.html" title="PA3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">PA3</div></div></a></div><div class="next-post pull-right"><a href="/post/730b3a2f.html" title="B+Tree"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">B+Tree</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/post/c54fe8f0.html" title="PA3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-03</div><div class="title">PA3</div></div></a></div><div><a href="/post/5b2b7d53.html" title="PA4"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-03</div><div class="title">PA4</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Big_Swag</div><div class="author-info__description">myblog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PA0%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">PA0记录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PA1%E8%AE%B0%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">PA1记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%82%B2%E5%82%AC%E7%9A%84%E7%BA%A2%E7%99%BD%E6%9C%BA%E4%B9%8B%E5%A4%9C"><span class="toc-number">2.1.</span> <span class="toc-text">悲催的红白机之夜</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Monitor%E6%A8%A1%E5%9D%97"><span class="toc-number">2.2.</span> <span class="toc-text">Monitor模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getopt-%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">getopt() 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.4.</span> <span class="toc-text">虚拟机初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BIOS%E5%92%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%90%AF%E5%8A%A8"><span class="toc-number">2.4.1.</span> <span class="toc-text">BIOS和计算机启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%82%E8%AE%B0"><span class="toc-number">2.4.2.</span> <span class="toc-text">杂记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%9A%84%E8%B5%B7%E5%A7%8B%E5%9C%B0%E5%9D%80"><span class="toc-number">2.4.3.</span> <span class="toc-text">物理内存的起始地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bathch-mod"><span class="toc-number">2.4.4.</span> <span class="toc-text">bathch mod</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFbatch-mod"><span class="toc-number">2.4.4.1.</span> <span class="toc-text">什么是batch mod</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="toc-number">2.4.4.2.</span> <span class="toc-text">有什么用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cmd-c"><span class="toc-number">2.4.5.</span> <span class="toc-text">cmd_c()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E9%87%8C%E6%A1%86%E6%9E%B6%E9%87%8C%E9%9D%A2%E6%9C%89%E4%B8%80%E4%B8%AA%E5%86%99%E9%94%99%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">2.5.</span> <span class="toc-text">这个里框架里面有一个写错的地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9"><span class="toc-number">2.6.</span> <span class="toc-text">正则表达式相关内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%88%86%E6%9E%90%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%81"><span class="toc-number">2.7.</span> <span class="toc-text">递归分析表达式！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%A2%E4%B8%A2%E5%86%85%E5%AE%B9"><span class="toc-number">2.8.</span> <span class="toc-text">关于基础设施的最后一丢丢内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PA2"><span class="toc-number">3.</span> <span class="toc-text">PA2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%81%9C%E8%AE%A1%E7%AE%97%E7%9A%84%E6%9C%BA%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">不停计算的机器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RTFSC-2"><span class="toc-number">3.2.</span> <span class="toc-text">RTFSC(2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%95%B4%E7%90%86%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E5%9C%A8NEMU%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">请整理一条指令在NEMU中的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%97%E7%95%A5%E7%9A%84%E7%9C%8B%E5%AE%8C%E8%BF%99%E4%B8%80%E7%AF%87%E7%AB%A0%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">3.3.1.</span> <span class="toc-text">粗略的看完这一篇章的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E8%AF%B4%E8%AF%B4"><span class="toc-number">3.3.2.</span> <span class="toc-text">详细说说</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%96%E6%8C%87%E4%BB%A4"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">取指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%91%E7%A0%81"><span class="toc-number">3.3.2.2.</span> <span class="toc-text">译码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C"><span class="toc-number">3.3.2.3.</span> <span class="toc-text">执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0pc"><span class="toc-number">3.3.2.4.</span> <span class="toc-text">更新pc</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8RTL%E8%A1%A8%E7%A4%BA%E6%8C%87%E4%BB%A4%E7%9A%84%E8%A1%8C%E4%B8%BA"><span class="toc-number">3.3.3.</span> <span class="toc-text">用RTL表示指令的行为</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%B3%E6%B3%95%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-number">3.3.3.1.</span> <span class="toc-text">想法的由来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%AE%9A%E4%B9%89"><span class="toc-number">3.3.3.2.</span> <span class="toc-text">相关定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">3.3.3.3.</span> <span class="toc-text">相关操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#t%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%9C%89host%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%E7%9A%84RTL%E6%8C%87%E4%BB%A4%E5%91%A2"><span class="toc-number">3.3.3.3.1.</span> <span class="toc-text">t为什么需要有host内存访问的RTL指令呢?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%88%91%E4%BB%AC%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.4.</span> <span class="toc-text">开始我们的代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%EF%BC%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E5%92%8CAM"><span class="toc-number">3.4.</span> <span class="toc-text">程序，运行时环境和AM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%A6%82%E8%BF%B0"><span class="toc-number">3.4.1.</span> <span class="toc-text">运行时环境概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%B0%81%E8%A3%85%E6%88%90%E5%BA%93%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.2.</span> <span class="toc-text">运行环境封装成库函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%93%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-number">3.4.2.1.</span> <span class="toc-text">库的思想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AM-%E8%A3%B8%E6%9C%BA-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">3.4.3.</span> <span class="toc-text">AM - 裸机 运行时环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RTFSC"><span class="toc-number">3.4.4.</span> <span class="toc-text">RTFSC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AM-kernel"><span class="toc-number">3.4.4.1.</span> <span class="toc-text">AM-kernel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%9B%B4%E5%A4%9A%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.4.5.</span> <span class="toc-text">运行更多的程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.6.</span> <span class="toc-text">实现常用的库函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="toc-number">3.4.7.</span> <span class="toc-text">重新认识计算机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD"><span class="toc-number">3.5.</span> <span class="toc-text">基础设施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E6%8F%92%E6%9B%B2"><span class="toc-number">3.5.1.</span> <span class="toc-text">小插曲</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">3.6.</span> <span class="toc-text">输入输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E4%B8%8ECPU"><span class="toc-number">3.6.1.</span> <span class="toc-text">设备与CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3I-O"><span class="toc-number">3.6.2.</span> <span class="toc-text">端口I&#x2F;O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84I-O"><span class="toc-number">3.6.3.</span> <span class="toc-text">内存映射I&#x2F;O</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA"><span class="toc-number">3.6.3.1.</span> <span class="toc-text">行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile"><span class="toc-number">3.6.3.2.</span> <span class="toc-text">volatile</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">3.6.4.</span> <span class="toc-text">状态机视角下的输入输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NEMU%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">3.6.5.</span> <span class="toc-text">NEMU中的输入输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%A0%E5%B0%84%E5%92%8CI-O%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.5.1.</span> <span class="toc-text">映射和I&#x2F;O方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87"><span class="toc-number">3.6.5.2.</span> <span class="toc-text">设备</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%8A%BD%E8%B1%A1%E6%88%90IOE"><span class="toc-number">3.6.6.</span> <span class="toc-text">将输入输出抽象成IOE</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E4%B8%8D%E5%90%8C%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BE%E5%A4%87%E8%AE%BF%E9%97%AE%E6%8A%BD%E8%B1%A1%E6%88%90%E7%BB%9F%E4%B8%80%E7%9A%84API%E5%91%A2"><span class="toc-number">3.6.6.1.</span> <span class="toc-text">如何对不同架构的设备访问抽象成统一的API呢</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3"><span class="toc-number">3.6.7.</span> <span class="toc-text">串口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%92%9F"><span class="toc-number">3.6.8.</span> <span class="toc-text">时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%91%E5%88%86"><span class="toc-number">3.6.8.1.</span> <span class="toc-text">跑分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E6%98%A0%E5%B0%84"><span class="toc-number">3.6.9.</span> <span class="toc-text">键盘映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VGA"><span class="toc-number">3.6.10.</span> <span class="toc-text">VGA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E5%8D%A1-%E9%80%89%E5%81%9A"><span class="toc-number">3.6.11.</span> <span class="toc-text">声卡(选做)</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/5b2b7d53.html" title="PA4">PA4</a><time datetime="2023-09-03T07:42:03.000Z" title="Created 2023-09-03 15:42:03">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/c54fe8f0.html" title="PA3">PA3</a><time datetime="2023-09-03T07:40:35.000Z" title="Created 2023-09-03 15:40:35">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/110fe971.html" title="PA0-2">PA0-2</a><time datetime="2023-09-03T07:38:31.000Z" title="Created 2023-09-03 15:38:31">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/730b3a2f.html" title="B+Tree">B+Tree</a><time datetime="2023-09-03T07:30:53.000Z" title="Created 2023-09-03 15:30:53">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/8457a522.html" title="2021_Buffer_pool">2021_Buffer_pool</a><time datetime="2023-09-03T07:28:49.000Z" title="Created 2023-09-03 15:28:49">2023-09-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Big_Swag</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/moyu/"><i class="fa fa-gamepad"></i><span>休闲游戏</span></a><a class="rightMenu-item" target="_blank" rel="noopener" href="https://tools.haiyong.site"><i class="fa fa-tools"></i><span>实用工具</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:changeMouseMode();"><i class="fa fa-mouse"></i><span>切换鼠标右键</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script type="text/javascript" src="/js/rightmenu.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html><html lang="cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PA3 | Swag_BLog</title><meta name="author" content="Big_Swag"><meta name="copyright" content="Big_Swag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最简单的操作系统我们有了NEMU+AM+IOE就可以把正小游戏放在上面运行啦 但是会独占整个操作系统 这样如果要执行下一个程序就需要管理员来手动加载新的指令，这太麻烦了 回想起冯诺依曼计算机的工作方式, 它的其中一个特点就是: 当计算机执行完一条指令的时候, 就自动执行下一条指令. 类似的, 我们能不能让管理员事先准备好一组程序, 让计算机执行完一个程序之后, 就自动执行下一个程序呢? 这就是批处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PA3">
+<meta property="og:url" content="http://example.com/post/c54fe8f0.html">
+<meta property="og:site_name" content="Swag_BLog">
+<meta property="og:description" content="最简单的操作系统我们有了NEMU+AM+IOE就可以把正小游戏放在上面运行啦 但是会独占整个操作系统 这样如果要执行下一个程序就需要管理员来手动加载新的指令，这太麻烦了 回想起冯诺依曼计算机的工作方式, 它的其中一个特点就是: 当计算机执行完一条指令的时候, 就自动执行下一条指令. 类似的, 我们能不能让管理员事先准备好一组程序, 让计算机执行完一个程序之后, 就自动执行下一个程序呢? 这就是批处">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-09-03T07:40:35.000Z">
+<meta property="article:modified_time" content="2023-09-03T07:42:21.661Z">
+<meta property="article:author" content="Big_Swag">
+<meta property="article:tag" content="PA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/post/c54fe8f0.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PA3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-03 15:42:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Swag_BLog"><span class="site-name">Swag_BLog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PA3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-09-03T07:40:35.000Z" title="Created 2023-09-03 15:40:35">2023-09-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-09-03T07:42:21.661Z" title="Updated 2023-09-03 15:42:21">2023-09-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PA3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="最简单的操作系统"><a href="#最简单的操作系统" class="headerlink" title="最简单的操作系统"></a>最简单的操作系统</h1><p>我们有了NEMU+AM+IOE就可以把正小游戏放在上面运行啦</p>
+<p>但是<strong>会独占整个操作系统</strong></p>
+<p>这样如果要执行下一个程序就需要管理员来手动加载新的指令，这太麻烦了</p>
+<p>回想起冯诺依曼计算机的工作方式, 它的其中一个特点就是: 当计算机执行完一条指令的时候, 就自动执行下一条指令. 类似的, 我们能不能让管理员事先准备好一组程序, 让计算机执行完一个程序之后, 就自动执行下一个程序呢?</p>
+<p><strong>这就是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Batch_processing">批处理</a>系统的思想:</strong></p>
+<p>有前台程序也有后台程序，当前台程序结束时后台程序就加载一个新的前台程序</p>
+<p>我们称这个后台程序为：<strong>操作系统</strong></p>
+<p>是的，操作系统也不过是一个C程序罢了！</p>
+<p>我们将带着这样的疑问去探索操作系统：<strong>操作系统和普通的C程序有什么不同之处呢？、</strong></p>
+<p>回顾历史, 要实现一个最简单的操作系统, 就要实现以下两点功能:</p>
+<ul>
+<li>用户程序执行结束之后, 可以跳转到操作系统的代码继续执行</li>
+<li>操作系统可以加载一个新的用户程序来执行</li>
+</ul>
+<h2 id="来自操作系统的新需求"><a href="#来自操作系统的新需求" class="headerlink" title="来自操作系统的新需求"></a>来自操作系统的新需求</h2><p>当然，我们首先会想到jal&#x2F;call指令</p>
+<p>毕竟在黑客严重，执行流切换的本质也不过是pc跳转罢了</p>
+<p>早期也确实是这样做的</p>
+<p>操作系统就是一个库函数, 用户程序退出的时候, 调用一下这个特殊的库函数就可以了, 就像我们在AM的程序中调用 <code>halt()</code>一样.</p>
+<p>但是：<em>个用户程序出错了, 操作系统可以运行下一个用户程序; 但如果操作系统崩溃了, 整个计算机系统都将无法工作</em></p>
+<p>所以<strong>操作系统还是应该被保护</strong>起来的</p>
+<p>这样来看，用jal和call就太过随意了吧</p>
+<p>我们所希望的, 是一种可以限制入口的执行流切换方式, 显然, 这种方式是无法通过程序代码来实现的.</p>
+<h2 id="等级森严的制度"><a href="#等级森严的制度" class="headerlink" title="等级森严的制度"></a>等级森严的制度</h2><p>保护机制应运而生！</p>
+<h1 id="穿越时空的旅程"><a href="#穿越时空的旅程" class="headerlink" title="穿越时空的旅程"></a>穿越时空的旅程</h1><p>有了分级和保护机制，用户程序就无法把执行流切换到皂搓系统拱的任意代码了</p>
+<p>为了实现最简单的操作系统，硬件还需要提供一种可以限制入口的指令流切换方式，跳转目标称为异常入口地址</p>
+<p>我们称其为中断&#x2F;响应机制</p>
+<h2 id="riscv32"><a href="#riscv32" class="headerlink" title="riscv32"></a>riscv32</h2><p>riscv32提供 <code>ecall</code>指令作为自陷指令, 并提供一个stvec寄存器来存放异常入口地址. 为了保存程序当前的状态, riscv32提供了一些特殊的系统寄存器, 叫控制状态寄存器(CSR寄存器). 在PA中, 我们只使用如下3个CSR寄存器:</p>
+<ul>
+<li>sepc寄存器 - 存放触发异常的PC</li>
+<li>sstatus寄存器 - 存放处理器的状态</li>
+<li>scause寄存器 - 存放触发异常的原因</li>
+<li>riscv32通过 <code>sret</code>指令从异常处理过程中返回, 它将根据sepc寄存器恢复PC.</li>
+</ul>
+<h2 id="状态机视角下的异常响应机制"><a href="#状态机视角下的异常响应机制" class="headerlink" title="状态机视角下的异常响应机制"></a>状态机视角下的异常响应机制</h2><p><strong>状态扩容</strong></p>
+<p>我们知道程序是个 <code>S = &lt;R, M&gt;</code>的状态机</p>
+<p>如果要给计算机添加异常响应机制，我们又应该如何对这个状态机记性扩充呢？</p>
+<ul>
+<li>对R扩充<ul>
+<li>添加之前提到的一些特殊寄存器(系统寄存器)</li>
+</ul>
+</li>
+</ul>
+<p>即扩充之后的寄存器可以表示为 <code>R = &#123;GPR, PC, SR&#125;</code></p>
+<p><strong>状态转移扩容</strong></p>
+<p>之前都是认为程序执行的每一条指令都会成功, 从而状态机会根据指令的语义进行状态转移. 添加异常响应机制之后, 我们允许一条指令的执行会”失败”</p>
+<ul>
+<li><p>怎么做到？、</p>
+<ul>
+<li>假设CPU有一条虚构的指令 raise_intr，执行这条指令的行为就是上文提到的异常响应过程</li>
+<li>来，用状态机视角来看一下这条指令的租用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SR[sepc] &lt;- PC</span><br><span class="line">SR[scause] &lt;- 一个描述失败原因的号码</span><br><span class="line">PC &lt;- SR[stvec]</span><br></pre></td></tr></table></figure>
+
+<p>ok，现在这么来理解异常响应</p>
+</li>
+<li><p>执行成功</p>
+</li>
+<li><p>和之前一样</p>
+</li>
+<li><p>执行失败</p>
+</li>
+<li><p>等价于执行raise_intr</p>
+</li>
+</ul>
+<p><img src="PA3%E8%AE%B0%E5%BD%95/1688451342919.png" alt="1688451342919"></p>
+<h1 id="将上下文管理抽象成CTE"><a href="#将上下文管理抽象成CTE" class="headerlink" title="将上下文管理抽象成CTE"></a>将上下文管理抽象成CTE</h1><p><strong>我们刚才提到了程序的状态, 在操作系统中有一个等价的术语, 叫”上下文”</strong></p>
+<p>硬件提供的上述在操作系统和用户程序之间切换执行流的功能, 在操作系统看来, 都可以划入上下文管理的一部分.</p>
+<p>而上下文的具体内容, 在不同的架构上也显然不一样(比如寄存器就已经不一样了). 于是, 我们可以将上下文管理的功能划入到AM的一类新的API中, 名字叫CTE(ConText Extension).</p>
+<ul>
+<li>如何做到呢？</li>
+<li>先思考操作系统的处理过程其实需要哪些信息<ul>
+<li>引发执行流切换的原因，除以0还是非法指令还是出发断点，还是程序自愿陷入操作系统?</li>
+<li>程序的上下文，操作系统读出上下文中的一些寄存器，根据它们的信息啦自己西宁进一步的处理</li>
+</ul>
+</li>
+</ul>
+<p><strong>把这两点信息抽象成一中统一的表达方式</strong>，就可以定义出CTE的API了</p>
+<p>CTE定义了名为“事件”的如下数据结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct Event &#123;</span><br><span class="line">  enum &#123; ... &#125; event;</span><br><span class="line">  uintptr_t cause, ref;</span><br><span class="line">  const char *msg;</span><br><span class="line">&#125; Event;</span><br></pre></td></tr></table></figure>
+
+<p><code>event</code>表示事件编号, <code>cause</code>和 <code>ref</code>是一些描述事件的补充信息</p>
+<p><code>msg</code>是事件信息字符串,</p>
+<p>具体内容, 就无法进一步进行抽象了. 这主要是因为不同架构之间上下文信息的差异过大</p>
+<p>最后还有另外两个统一的API:</p>
+<ul>
+<li><code>bool cte_init(Context* (*handler)(Event ev, Context *ctx))</code>用于进行CTE相关的初始化操作. 其中它还接受一个来自操作系统的事件处理回调函数的指针, 当发生事件时, CTE将会把事件和相关的上下文作为参数, 来调用这个回调函数, 交由操作系统进行后续处理.</li>
+<li><code>void yield()</code>用于进行自陷操作, 会触发一个编号为 <code>EVENT_YIELD</code>事件. 不同的ISA会使用不同的自陷指令来触发自陷操作, 具体实现请RTFSC.</li>
+</ul>
+<h2 id="设置异常入口地址"><a href="#设置异常入口地址" class="headerlink" title="设置异常入口地址"></a>设置异常入口地址</h2><p>看了半天代码也没找到所说的csr，后面通过看知乎的经验分享得到答案</p>
+<p>我们需要自己在nemu中新建csr，然后通过把异常入口地址存储自己写的csr，stevc中</p>
+<h2 id="触发自陷操作"><a href="#触发自陷操作" class="headerlink" title="触发自陷操作"></a>触发自陷操作</h2><p>实现raise_intr函数然后再ecall中调用即可</p>
+<h2 id="保存上下文"><a href="#保存上下文" class="headerlink" title="保存上下文"></a>保存上下文</h2><p>改变结构体中gpr和和sgpr的顺序，通过观察Trap.S文件可以发现这个要求，因为汇编中存入内存的指令是一条一条按照地支顺序来的，所以我们需要正确的组织结构体</p>
+<h3 id="异常号的保存"><a href="#异常号的保存" class="headerlink" title="异常号的保存"></a>异常号的保存</h3><ul>
+<li>x86通过软件来保存异常号, 没有类似cause的寄存器. mips32和riscv32也可以这样吗? 为什么?<ul>
+<li>可以，但是这牺牲异常处理的效率，并且与RISC-V的设计原则不太匹配。</li>
+</ul>
+</li>
+</ul>
+<h3 id="对比异常处理与函数调用"><a href="#对比异常处理与函数调用" class="headerlink" title="对比异常处理与函数调用"></a>对比异常处理与函数调用</h3><p>Q: 我们知道进行函数调用的时候也需要保存调用者的状态: 返回地址, 以及calling convention中需要调用者保存的寄存器. 而CTE在保存上下文的时候却要保存更多的信息. 尝试对比它们, 并思考两者保存信息不同是什么原因造成的.</p>
+<p>A: 函数调用时都在同一个系统层级中，但是CTE更多用在不同的系统层级互相调用之中？</p>
+<h3 id="理解上下文结构体的前世今生"><a href="#理解上下文结构体的前世今生" class="headerlink" title="理解上下文结构体的前世今生"></a>理解上下文结构体的前世今生</h3><p>在 <code>__am_irq_handle()</code>中看到有一个上下文结构指针 <code>c</code></p>
+<ol>
+<li>c指向的上下文结构在哪里？<ol>
+<li>在Trap.s指令中能看到一系列对内存的存储操作，这就是文档中提到的压栈，然后jal 指令跳转到 <code>__am_irq_handle</code>，此时相应的内存中已经存储了对应寄存器中的数据，所以c其实是指向sp，即栈的头部，然后我们通过这个sp赋值给a0就等属于确定了c的地址</li>
+</ol>
+</li>
+</ol>
+<h2 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h2><p><code>__am_irq_handle()</code>的代码会把执行流切换的原因打包成事件, 然后调用在 <code>cte_init()</code>中注册的事件处理回调函数, 将事件交给Nanos-lite来处理，在此处这里的回调函数就是do_event()~</p>
+<p><code>do_event()</code>函数会根据事件类型再次进行分发.</p>
+<p>在这里就是实现Nanos-lite对事件的接受</p>
+<h2 id="恢复上下文"><a href="#恢复上下文" class="headerlink" title="恢复上下文"></a>恢复上下文</h2><p>这里是要做两件事情</p>
+<ol>
+<li>在合适的中断的的合适地方来把地址变为ecall+4，其他地方是ecall</li>
+<li>实现新指令sret，这样才可以从终端中退出</li>
+</ol>
+<h2 id="从Nanos-lite调用-yield-开始-到从-yield-返回的期间-这一趟旅程具体经历了什么"><a href="#从Nanos-lite调用-yield-开始-到从-yield-返回的期间-这一趟旅程具体经历了什么" class="headerlink" title="从Nanos-lite调用 yield()开始, 到从 yield()返回的期间, 这一趟旅程具体经历了什么?"></a>从Nanos-lite调用 <code>yield()</code>开始, 到从 <code>yield()</code>返回的期间, 这一趟旅程具体经历了什么?</h2><ol>
+<li>调用yield<ol>
+<li>执行汇编指令lw a7,1; ecall</li>
+<li>把1的值读入a7中，然后ecall，通过引发环境里调用异常来执行环境</li>
+</ol>
+</li>
+<li>ecall<ol>
+<li>触发了raise_intr函数，异常号为1</li>
+<li>scause为1</li>
+<li>sepc存储触发自陷指令的地址</li>
+<li>pc跳转至异常入口地址</li>
+</ol>
+</li>
+<li>进入异常地址<ol>
+<li>在这里的表现是文件中的Trap.s汇编代码</li>
+<li>先把各个寄存器的内容推入栈中</li>
+<li>执行__am_irq_handle</li>
+<li>把c的中存储的事件进行打包分发</li>
+</ol>
+</li>
+<li>恢复上下文<ol>
+<li>把退入栈中的数据再存入各个寄存器中</li>
+<li>通过sret指令从异常入口中返回</li>
+</ol>
+</li>
+</ol>
+<h2 id="小问题：AM给程序留了多大的栈空间"><a href="#小问题：AM给程序留了多大的栈空间" class="headerlink" title="小问题：AM给程序留了多大的栈空间"></a>小问题：AM给程序留了多大的栈空间</h2><p>为了测试异常入口地址是否已经设置正确, 我们还需要真正触发一次自陷操作</p>
+<p>。。不是很清楚？我的理解是从Trap.S的汇编文件中观察，那么是预留了35*4个字节大小的栈空间用来存储上下文</p>
+<h1 id="用户程序和系统调用"><a href="#用户程序和系统调用" class="headerlink" title="用户程序和系统调用"></a>用户程序和系统调用</h1><p>有了自陷指令, 用户程序就可以将执行流切换到操作系统指定的入口了. 现在我们来解决实现批处理系统的第二个问题: 如何加载用户程序.</p>
+<h2 id="加载第一个用户程序"><a href="#加载第一个用户程序" class="headerlink" title="加载第一个用户程序"></a>加载第一个用户程序</h2><p>在操作系统中，加载用户程序的任务是由loader模块负责的</p>
+<p>为了实现 <code>loader()</code>函数, 我们需要解决以下问题:</p>
+<ul>
+<li>可执行文件在哪里?</li>
+<li>代码和数据在可执行文件的哪个位置?</li>
+<li>代码和数据有多少?</li>
+<li>“正确的内存位置”在哪里?</li>
+</ul>
+<p>回答第一个问题之前我们先要知到，由于运行时环境的差异，运行在操作系统上的程序和AM上的是不一样的，我们不能把编译到AM上的程序放到操作系统上运行，</p>
+<p>于是，Navy-apps应运而生！</p>
+<p>专门用于编译出操作系统的用户程序。</p>
+<h3 id="可执行文件如何组织"><a href="#可执行文件如何组织" class="headerlink" title="可执行文件如何组织"></a>可执行文件如何组织</h3><p>为了回答剩下的问题, 我们首先需要了解可执行文件是如何组织的. 你应该已经在课堂上学习过ELF文件格式了, 它除了包含程序本身的代码和静态数据之外, 还包括一些用来描述它们的信息, 否则我们连代码和数据之间的分界线在哪里都不知道. 这些信息描述了可执行文件的组织形式, 不同组织形式形成了不同格式的可执行文件, 例如Windows主流的可执行文件是<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Portable_Executable">PE(Portable Executable)</a>格式, 而GNU&#x2F;Linux主要使用<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF(Executable and Linkable Format)</a>格式.</p>
+<h3 id="如何是识别不同格式的可执行文件？"><a href="#如何是识别不同格式的可执行文件？" class="headerlink" title="如何是识别不同格式的可执行文件？"></a>如何是识别不同格式的可执行文件？</h3><p>GNU&#x2F;Linux尝试加载一个可执行文件时，会首先检查文件的魔数（magic Number），这是一个特性的字节徐铁，如果检测到的魔数与系统期望的ELF格式不符合，就会报告“格式错误”</p>
+<h3 id="ELF提供的两个视角来组织一个可执行文件"><a href="#ELF提供的两个视角来组织一个可执行文件" class="headerlink" title="ELF提供的两个视角来组织一个可执行文件"></a>ELF提供的两个视角来组织一个可执行文件</h3><ul>
+<li>面向链接过程的section视角<ul>
+<li>提供用于链接和重定位的信息(符号表)</li>
+</ul>
+</li>
+<li>面向执行的segment视角<ul>
+<li>提供用于加载可执行文件的信息</li>
+</ul>
+</li>
+<li>一个segment可能由0个或多个section组成, 但一个section可能不被包含于任何segment中.</li>
+</ul>
+<p>我们现在侧重于去看加载这一方面的内容</p>
+<p>ELF中采用program header table来管理segment, program header table的一个表项描述了一个segment的所有属性</p>
+<ul>
+<li>类型</li>
+<li>虚拟地址</li>
+<li>标志</li>
+<li>对齐方式</li>
+<li>文件内偏移量和segment的大小</li>
+</ul>
+<p><strong>加载一个可执行文件并不是加载塔的所包含的所有内容，只要加载那些与运行时刻相关的内容就可以了</strong></p>
+<p>我们可以通过判断segment的 <code>Type</code>属性是否为 <code>PT_LOAD</code>来判断一个segment是否需要加载.</p>
+<h3 id="堆和栈在哪"><a href="#堆和栈在哪" class="headerlink" title="堆和栈在哪"></a>堆和栈在哪</h3><p>为什么堆和栈的内容没有放到可执行文件里？</p>
+<ul>
+<li>栈<ul>
+<li>栈是由编译器自动分配的内存</li>
+</ul>
+</li>
+<li>堆<ul>
+<li>堆是在程序运行时才知道需要的内存大小</li>
+</ul>
+</li>
+</ul>
+<h3 id="冗余的属性"><a href="#冗余的属性" class="headerlink" title="冗余的属性"></a>冗余的属性</h3><p>一个segment包含两个大小的属性, 分别是 <code>FileSiz</code>和 <code>MemSiz</code>, 这是为什么? 再仔细观察一下, 你会发现 <code>FileSiz</code>通常不会大于相应的 <code>MemSiz</code>, 这又是为什么?</p>
+<ol>
+<li><strong>FileSiz</strong> ：FileSiz指定了该段在可执行文件中占用的大小。这个大小是指这个段在磁盘上占用的字节数。它包括了段所包含的数据和元数据的大小。</li>
+<li><strong>MemSiz</strong> ：MemSiz指定了该段在运行时所占用的大小。这个大小是指这个段在内存中占用的字节数。它包括了该段所包含的数据以及需要在运行时进行动态分配的空间。</li>
+</ol>
+<p>通常情况下，FileSiz不会大于相应的MemSiz，这是由于以下原因：</p>
+<ul>
+<li><strong>对于只读段（如代码段）</strong> ：可执行文件中的代码段是只读的，并且在运行时不允许对其进行修改。因此，FileSiz和MemSiz的大小通常是相等的，以确保代码段在内存中分配的大小与文件中的大小一致。</li>
+<li><strong>对于可写段（如数据段）</strong> ：可执行文件中的数据段包含了在程序运行时需要进行修改的数据。这可能包括全局变量、静态变量等。在这种情况下，FileSiz指定了段在文件中的大小，而MemSiz指定了在运行时为此段分配的内存大小。由于在运行时可能需要进行动态分配，因此MemSiz可能会大于FileSiz。</li>
+</ul>
+<h3 id="为什么清零"><a href="#为什么清零" class="headerlink" title="为什么清零"></a>为什么清零</h3><p>将 <code>[VirtAddr + FileSiz, VirtAddr + MemSiz)</code> 对应的物理区间清零是为了：<strong>这是暂时未用到的内存，清零可以防止未知错误</strong></p>
+<h2 id="操作系统的运行时环境"><a href="#操作系统的运行时环境" class="headerlink" title="操作系统的运行时环境"></a>操作系统的运行时环境</h2><p>加载了程序之后自然就到了程序的运行了，运行就需要运行时环境</p>
+<p>操作系统有责任来提供运行时环境的功能</p>
+<p>我们之前已经根据是否与ISA有关吧运行时环境分为两部分</p>
+<ul>
+<li>一个是无关<ul>
+<li>例如标准库的实现</li>
+</ul>
+</li>
+<li>一个是有关<ul>
+<li>设备的接口映射和内存映射</li>
+</ul>
+</li>
+</ul>
+<p>在操作系统上市不需要照顾会于硬件交互</p>
+<p>之前裸机的状态下，系统是被一个程序独占的，而现在的系统中会有多个程序并发甚至同时使用计算机系统中的资源，那就需要一个管理员了</p>
+<ul>
+<li>操作系统就担当着这样的任务<ul>
+<li>程序要使用资源的时候需要向资源管理者(操作系统)提出申请。</li>
+<li>操作系统为用户程序提供相应的服务<ul>
+<li>要以统一的接口来呈现(系统调用)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="系统调用与运行时环境"><a href="#系统调用与运行时环境" class="headerlink" title="系统调用与运行时环境"></a>系统调用与运行时环境</h3><p>系统调用把整个运行时环境分成两部分</p>
+<ul>
+<li>操作系统内核区<ul>
+<li>访问系统资源的功能</li>
+</ul>
+</li>
+<li>用户区<ul>
+<li>保留无需使用系统资源的功能<ul>
+<li>比如标准库</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>这样，<strong>用户程序只能用于计算</strong>，超越纯粹计算能力之外的任务都需要通过系统调用向操作系统请求服务</p>
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><ul>
+<li>如何出发一个系统调用<ul>
+<li>通过自陷操作可以告诉操作系统相关问题</li>
+</ul>
+</li>
+<li>系统调用函数只需要在上下文中获取必要信息，就知道用户程序发出的请求是什么了<ul>
+<li>既然我们通过自陷指令来触发系统调用, 那么对用户程序来说, 用来向操作系统描述需求的最方便手段就是使用通用寄存器了, 因为执行自陷指令之后, 执行流就会马上切换到事先设置好的入口, 通用寄存器也会作为上下文的一部分被保存起来</li>
+</ul>
+</li>
+<li>Nanos-lite收到系统调用事件之后, 就会调出系统调用处理函数 <code>do_syscall()</code>进行处理<ul>
+<li>然后根据上下文内容对不同的事件进行分发</li>
+</ul>
+</li>
+<li>然后设置系统调用的返回值，放在指定的寄存器中</li>
+<li>经过CTE, 执行流会从 <code>do_syscall()</code>一路返回到用户程序的 <code>_syscall_()</code>函数中. 代码最后会从相应寄存器中取出系统调用的返回值, 并返回给 <code>_syscall_()</code>的调用者, 告知其系统调用执行的情况(如是否成功等).</li>
+</ul>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>搞了半天其实还蛮简单的</p>
+<p>就是原本实现了事件分发</p>
+<p>现在要对系统调用进行进一步分发</p>
+<p>主要错在这里了</p>
+<ul>
+<li>把事件分发和系统调用分发混为一谈了</li>
+<li>nemu的译码实现出现了一些问题<ul>
+<li>auipc应该是立即数和当前PC相加</li>
+<li>jalr应该先处理src1寄存器，再来出来dset寄存器</li>
+</ul>
+</li>
+</ul>
+<h2 id="操作系统上的TRM"><a href="#操作系统上的TRM" class="headerlink" title="操作系统上的TRM"></a>操作系统上的TRM</h2><h3 id="标准输出"><a href="#标准输出" class="headerlink" title="标准输出"></a>标准输出</h3><p>输出是通过 <code>SYS_write</code>系统调用来实现的</p>
+<p>需要在 <code>do_syscall()</code>中识别出系统调用号是 <code>SYS_write</code>之后, 检查 <code>fd</code>的值</p>
+<p>如果 <code>fd</code>是 <code>1</code>或 <code>2</code>(分别代表 <code>stdout</code>和 <code>stderr</code>), 则将 <code>buf</code>为首地址的 <code>len</code>字节输出到串口(使用 <code>putch()</code>即可). 最后还要设置正确的返回值</p>
+<p>我们平时使用的 <code>printf()</code>, <code>cout</code>这些库函数和库类, 对字符串进行格式化之后, 最终也是通过系统调用进行输出. 这些都是”系统调用封装成库函数”的例子</p>
+<p>库函数会再次对部分系统调用再次进行抽象</p>
+<p>另一方面, 系统调用依赖于具体的操作系统, 因此库函数的封装也提高了程序的可移植性</p>
+<h3 id="堆区管理"><a href="#堆区管理" class="headerlink" title="堆区管理"></a>堆区管理</h3><p>调整堆区大小是通过 <code>sbrk()</code>库函数来实现的, 它的原型是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void* sbrk(intptr_t increment);</span><br></pre></td></tr></table></figure>
+
+<p>用于将用户程序的program break增长 <code>increment</code>字节,</p>
+<p>在GNU&#x2F;Linux中, 这个系统调用是 <code>SYS_brk</code>, 它接收一个参数 <code>addr</code>, 用于指示新的program break的位置. <code>_sbrk()</code>通过记录的方式来对用户程序的program break位置进行管理, 其工作方式如下:</p>
+<ol>
+<li>program break一开始的位置位于 <code>_end</code></li>
+<li>被调用时, 根据记录的program break位置和参数 <code>increment</code>, 计算出新program break</li>
+<li>通过 <code>SYS_brk</code>系统调用来让操作系统设置新program break</li>
+<li>若 <code>SYS_brk</code>系统调用成功, 该系统调用会返回 <code>0</code>, 此时更新之前记录的program break的位置, 并将旧program break的位置作为 <code>_sbrk()</code>的返回值返回</li>
+<li>若该系统调用失败, <code>_sbrk()</code>会返回 <code>-1</code></li>
+</ol>
+<p>上述代码是在用户层的库函数中实现的, 我们还需要在Nanos-lite中实现 <code>SYS_brk</code>的功能. 由于目前Nanos-lite还是一个单任务操作系统, 空闲的内存都可以让用户程序自由使用, 因此我们只需要让 <code>SYS_brk</code>系统调用总是返回 <code>0</code>即可</p>
+<h4 id="实现中遇到的问题"><a href="#实现中遇到的问题" class="headerlink" title="实现中遇到的问题"></a>实现中遇到的问题</h4><p>我们需要用到extern char end来得到堆区的起始地址来进行分配</p>
+<ul>
+<li><strong>end存储的不是需要的地址</strong></li>
+<li>end的地址，才是需要的起始地址<ul>
+<li>所以我们需要对end进行取地址，然后用一个全局的void *program break来进行对堆区的操作</li>
+</ul>
+</li>
+</ul>
+<h3 id="批处理的思想"><a href="#批处理的思想" class="headerlink" title="批处理的思想"></a>批处理的思想</h3><p>把一个个小的调用放在一起一次性解决</p>
+<h1 id="hello程序是什么-它从而何来-要到哪里去"><a href="#hello程序是什么-它从而何来-要到哪里去" class="headerlink" title="hello程序是什么, 它从而何来, 要到哪里去"></a>hello程序是什么, 它从而何来, 要到哪里去</h1><p>我们知道 <code>navy-apps/tests/hello/hello.c</code>只是一个C源文件, 它会被编译链接成一个ELF文件. 那么,</p>
+<ul>
+<li>hello程序一开始在哪里?<ul>
+<li>hello程序经过编译之后放在了ramdisk的镜像文件之中</li>
+<li>ramdisk用来模拟磁盘的作用</li>
+</ul>
+</li>
+<li>它是怎么出现内存中的?为什么会出现在目前的内存位置?<ul>
+<li>通过之前实现的loader加载器来加载到内存中</li>
+<li>先读取其elf格式文件头</li>
+<li>然后根据这个文件头的内容识别出每个段在磁盘中的哪个位置</li>
+<li>从相应的位置判断并读取出程序的各个段</li>
+<li>加载至程序头指定的内存位置中</li>
+</ul>
+</li>
+<li>它的第一条指令在哪里?<ul>
+<li>通过程序头，我们可以得知其第一条指令应该是从0x83000000开始的</li>
+</ul>
+</li>
+<li>究竟是怎么执行到它的第一条指令的?<ul>
+<li>加载器最后返回了一个这指向指令在内存中的虚拟地址的指针</li>
+</ul>
+</li>
+<li>hello程序在不断地打印字符串, 每一个字符又是经历了什么才会最终出现在终端上?<ul>
+<li>通过printf来进行打印</li>
+<li>printf函数先是通过调用sbrk来对堆区进行分配，由此得到了缓冲区</li>
+<li>然后再把所有的要输出的内容放到缓冲区当中</li>
+<li>再通过系统调用sys_wirte来把缓冲区的内容一次型输出出来<ul>
+<li>原来是这样！！！！这就解开了我一直以来对对于关于IO操作的缓冲区的不理解！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="简易文件系统"><a href="#简易文件系统" class="headerlink" title="简易文件系统"></a>简易文件系统</h2><ul>
+<li>对于用户程序来说，怎么知道文件在ramdisk中的什么位置？<ul>
+<li>操作系统需要在存储截止的驱动程序之上为用户程序提供一个更高级的抽象：文件</li>
+</ul>
+</li>
+<li>文件的本质：<strong>字节序列 + 一些额外属性</strong></li>
+</ul>
+<p>在我们的文件系统中，：</p>
+<ul>
+<li>文件大小固定</li>
+<li>写文件时不允许超过原有文件的大小</li>
+<li>文件的数量是固定的</li>
+<li>不能创建新文件</li>
+<li>没有目录<ul>
+<li>所以我们把目录分隔符以及应该存在的目录层级都直接写在文件名字中</li>
+</ul>
+</li>
+</ul>
+<h3 id="基本读写"><a href="#基本读写" class="headerlink" title="基本读写"></a>基本读写</h3><p>有了这些信息, 就已经可以实现最基本的文件读写操作了:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">size_t read(const char *filename, void *buf, size_t len);</span><br><span class="line">size_t write(const char *filename, void *buf, size_t len);</span><br></pre></td></tr></table></figure>
+
+<p>看着合理对吧，其实有一些问题，那就是<strong>直接用文件名来作为读写操作的索引</strong></p>
+<p>例如：</p>
+<p>我们在用 <code>less</code>工具浏览文件的时候:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file | less</span><br></pre></td></tr></table></figure>
+
+<p><code>cat</code>工具希望把文件内容写到 <code>less</code>工具的标准输入中, 但我们却无法用文件名来标识 <code>less</code>工具的标准输入!（包括其他的没有直接文件名的文件</p>
+<h3 id="文件读写-plus"><a href="#文件读写-plus" class="headerlink" title="文件读写 plus"></a>文件读写 plus</h3><p>所以我们需要open函数，来返回文件描述符(file descriptor)；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int open(const char *pathname, int flags, int mode);</span><br></pre></td></tr></table></figure>
+
+<p>所有文件都可以用文件描述符来标识文件</p>
+<h3 id="额外加入open-offset"><a href="#额外加入open-offset" class="headerlink" title="额外加入open_offset"></a>额外加入open_offset</h3><p>在我们的nanos-lite上，为了简化实现，直接把open_offset（存储文件打开读取后，读到了哪个字节）的值放在了文件记录表中</p>
+<h3 id="让loader使用文件"><a href="#让loader使用文件" class="headerlink" title="让loader使用文件"></a>让loader使用文件</h3><p>之前都是让loader直接读取ramdisk中的首个文件，在实现了对ramdisk中文件的查找之后，就可以让loader直接直接调用这些read_write的接口实现文件的写入和读取</p>
+<h2 id="一切皆文件"><a href="#一切皆文件" class="headerlink" title="一切皆文件"></a>一切皆文件</h2><p>这是unix哲学中的部分内容，被linux很好的继承</p>
+<h3 id="这样设计的由来"><a href="#这样设计的由来" class="headerlink" title="这样设计的由来"></a>这样设计的由来</h3><p>众所周知，计算机会连接许多设备，如果用户程序想要访问设备，怎么办呢？</p>
+<p>还是直接syscall吗？</p>
+<p>当然可以，但是问题也是有的</p>
+<h4 id="直接系统调用访问设备的问题"><a href="#直接系统调用访问设备的问题" class="headerlink" title="直接系统调用访问设备的问题"></a>直接系统调用访问设备的问题</h4><ul>
+<li>设备的类型非常多，每个类型还有许多数不胜数的功能<ul>
+<li>如果给每个功能都配备系统调用接口，那简直太夸张了</li>
+</ul>
+</li>
+<li>设备的功能差别大，接口难以统一<ul>
+<li>接口不能题意的后果就是程序与设备之间的交互会变得困难</li>
+</ul>
+</li>
+</ul>
+<h3 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h3><p>计算机中到处都是字节序列(比如：内存，管道，磁盘，socke，甚至一些非存储类型的硬件例如键盘敲下的按键编码形成了一个字节序列)，文件的本质也是字节序列</p>
+<p>那么，利用文件作为接口来和设备进行交互，就可以统一接口了！</p>
+<h2 id="虚拟文件系统VFS"><a href="#虚拟文件系统VFS" class="headerlink" title="虚拟文件系统VFS"></a>虚拟文件系统VFS</h2><p>所以需要对之前的功能进行拓展</p>
+<p>在Nanos-lite中, 实现VFS的关键就是 <code>Finfo</code>结构体中的两个读写函数指针:</p>
+<p>其中 <code>ReadFn</code>和 <code>WriteFn</code>分别是两种函数指针, 它们用于指向真正进行读写的函数, 并返回成功读写的字节数</p>
+<p>在之前你的实验中，stdout和stderr中的writeFn已经被我写入的串口输出函数，所以标准输入输出也是文件的一部分，包括接下来的设备接口，这些都通过VFS来进行交互</p>
+<h2 id="操作系统上的IOE"><a href="#操作系统上的IOE" class="headerlink" title="操作系统上的IOE"></a>操作系统上的IOE</h2><p>这部分就是通过VFS实现的读写函数，调用之前写在abtract machine中接口来得到我们想要的结果，返回就是。</p>
+<h3 id="时钟抽象"><a href="#时钟抽象" class="headerlink" title="时钟抽象"></a>时钟抽象</h3><p>调用接口获取秒和微妙</p>
+<p>然后再NDL库中进行完善和封装</p>
+<h3 id="按键抽象"><a href="#按键抽象" class="headerlink" title="按键抽象"></a>按键抽象</h3><p>实现event_read就完成了大部分，把事件按照规定的格式写入buf中</p>
+<p>然后再NDL_PollEvent中从&#x2F;dev&#x2F;event&#x2F;文件读取出事件并写入buf中</p>
+<h3 id="屏幕抽象"><a href="#屏幕抽象" class="headerlink" title="屏幕抽象"></a>屏幕抽象</h3><p>在一开始会错意了</p>
+<p>这部分在nanos的部分中就是</p>
+<p>实现 <code>dispinfo_read()</code>然后调用AM的接口写入设备中</p>
+<p>NDL比较难</p>
+<p>这个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 打开一张(*w) X (*h)的画布</span><br><span class="line">// 如果*w和*h均为0, 则将系统全屏幕作为画布, 并将*w和*h分别设为系统屏幕的大小</span><br><span class="line"> NDL_OpenCanvas(int *w, int *h);</span><br></pre></td></tr></table></figure>
+
+<p>是打开一张大小自定义的画布</p>
+<p>该画布居中！不是直接用屏幕大小</p>
+<p>这个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 向画布`(x, y)`坐标处绘制`w*h`的矩形图像, 并将该绘制区域同步到屏幕上</span><br><span class="line">// 图像像素按行优先方式存储在`pixels`中, 每个像素用32位整数以`00RRGGBB`的方式描述颜色</span><br><span class="line">void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h);</span><br></pre></td></tr></table></figure>
+
+<p>是把要画的内容存在pixels中，</p>
+<p>pixels在画布的(x,y)位置起始</p>
+<p>画出w*h的大小</p>
+<p>然后再把画布的内容渲染到屏幕上</p>
+<h1 id="精彩纷呈的应用程序"><a href="#精彩纷呈的应用程序" class="headerlink" title="精彩纷呈的应用程序"></a>精彩纷呈的应用程序</h1><h2 id="更丰富的运行时环境"><a href="#更丰富的运行时环境" class="headerlink" title="更丰富的运行时环境"></a>更丰富的运行时环境</h2><h3 id="多媒体库"><a href="#多媒体库" class="headerlink" title="多媒体库"></a>多媒体库</h3><p>为了运行一些更为复杂的程序，我们需要对之前NDL的内容进行再一次的封装，做出自己的miniSDL库</p>
+<p>当然这部分内容会在接来下<strong>NAVY中的应用程序</strong>中逐步完成</p>
+<h3 id="定点运算"><a href="#定点运算" class="headerlink" title="定点运算"></a>定点运算</h3><p>真正的CPU中都是存在FPU来进行浮点数运算的，但是FPU相对复杂这里用顶点运算代替相关实数的浮点运算</p>
+<h3 id="Navy作为基础设施"><a href="#Navy作为基础设施" class="headerlink" title="Navy作为基础设施"></a>Navy作为基础设施</h3><p>在整个PA的过程中，我们不间断的接触各种抽象，不断加深自己对于计算机是各个抽象层组成的这个概念</p>
+<p>在PA2中介绍了AM中的 <code>native</code>架构, 借助AM API的抽象, 我们可以把自己写的程序先运行在 <code>native</code>上, 这样就可以有效地把硬件(NEMU)bug和软件bug区分出来，在navy也可以有同样类似的实现</p>
+<p>Navy提供的运行时环境包括libos, libc(Newlib), 一些特殊的文件, 以及各种面向应用程序的库. 我们把前三者称为”操作系统相关的运行时环境”,面向应用程序的库和操作系统关系不大</p>
+<p>在此基础上，我们可以用linux native的功能实现操作系统以下抽象层的运行时环境，这样就实现了操作系统相关的运行时环境和Navy应用程序的解耦</p>
+<h4 id="Wine，WSL和运行时环境兼容"><a href="#Wine，WSL和运行时环境兼容" class="headerlink" title="Wine，WSL和运行时环境兼容"></a>Wine，WSL和运行时环境兼容</h4><p>WSL是通过WIndows的运行时环境来实现Linux的API，Wine正好返过来</p>
+<p>对的，这就是上面对操作系统相关的运行时环境和应用程序解耦概念的工业级实现</p>
+<p>相关的代码在native.cpp中，通过这些代码可以知到一些相关的技术是怎么实现的</p>
+<h2 id="Navy中的应用程序"><a href="#Navy中的应用程序" class="headerlink" title="Navy中的应用程序"></a>Navy中的应用程序</h2><p>这里就是对API的各种实现了</p>
+<h3 id="遇到的最头疼的事情"><a href="#遇到的最头疼的事情" class="headerlink" title="遇到的最头疼的事情"></a>遇到的最头疼的事情</h3><p>我无法读取出微妙数，io_read()读出秒数和微秒数之后，微妙数无法正常获取与赋值—-&gt;在NDL中就残留的问题，但是在运行pal中我发现如果没有这个微秒数，只能一秒刷新一帧，太离谱，遂找方法解决</p>
+<p>一开始很蒙，后面找到了问题所在—-&gt;地址出现了便宜</p>
+<p>我读取的地址貌似比赋值的地址少了4个字节的位置</p>
+<p>大概是某些方面出现问题了？</p>
+<p>我的NEMU是基于riscv32的，浅浅估计一下大概是我X86的linux系统与rescv32出现了一些迷之问题，导致在获取地址时我得到的是32位中，long为32位的变量，但是赋值的时候是当做64位来做，所以偏移了四个字节</p>
+<h2 id="终极拷问"><a href="#终极拷问" class="headerlink" title="终极拷问"></a>终极拷问</h2><p><strong>当你在终端键入 <code>./hello</code>运行Hello World程序的时候, 计算机究竟做了些什么?</strong></p>
+<ol>
+<li>设置当前目录为暂时的环境变量</li>
+<li>调用execvp(“hellp”,argv);函数发出系统调用申请来执行程序</li>
+<li>发出中断指令，触发exec系统调用</li>
+<li>把当前寄存器中和内存中的数据保存到栈或者某段内存中</li>
+<li>控制权来到操作系统内核，根据调用类型执行相应的操作和功能</li>
+<li>接下来就是执行程序，CPU从加载器加载好的内存中一条条读取指令</li>
+<li>在碰到需要输入输出的时候，触发又一次系统调用，wrtie系统调用，系统调用操作同上</li>
+<li>在堆区分配好缓存区域，把要输出到屏幕上的内容全部放到缓存区域</li>
+<li>然后把缓存中内容一次性输出到屏幕上</li>
+</ol>
+<h2 id="运行仙剑奇侠传"><a href="#运行仙剑奇侠传" class="headerlink" title="运行仙剑奇侠传"></a>运行仙剑奇侠传</h2><p><img src="PA3%E8%AE%B0%E5%BD%95/1692081517973.png" alt="1692081517973"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Big_Swag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/post/c54fe8f0.html">http://example.com/post/c54fe8f0.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PA/">PA</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/5b2b7d53.html" title="PA4"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">PA4</div></div></a></div><div class="next-post pull-right"><a href="/post/110fe971.html" title="PA0-2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">PA0-2</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/post/5b2b7d53.html" title="PA4"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-03</div><div class="title">PA4</div></div></a></div><div><a href="/post/110fe971.html" title="PA0-2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-03</div><div class="title">PA0-2</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Big_Swag</div><div class="author-info__description">myblog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">最简单的操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A5%E8%87%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B0%E9%9C%80%E6%B1%82"><span class="toc-number">1.1.</span> <span class="toc-text">来自操作系统的新需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E7%BA%A7%E6%A3%AE%E4%B8%A5%E7%9A%84%E5%88%B6%E5%BA%A6"><span class="toc-number">1.2.</span> <span class="toc-text">等级森严的制度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A9%BF%E8%B6%8A%E6%97%B6%E7%A9%BA%E7%9A%84%E6%97%85%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">穿越时空的旅程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#riscv32"><span class="toc-number">2.1.</span> <span class="toc-text">riscv32</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">状态机视角下的异常响应机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E6%8A%BD%E8%B1%A1%E6%88%90CTE"><span class="toc-number">3.</span> <span class="toc-text">将上下文管理抽象成CTE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%BC%82%E5%B8%B8%E5%85%A5%E5%8F%A3%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.</span> <span class="toc-text">设置异常入口地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E8%87%AA%E9%99%B7%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">触发自陷操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">3.3.</span> <span class="toc-text">保存上下文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%8F%B7%E7%9A%84%E4%BF%9D%E5%AD%98"><span class="toc-number">3.3.1.</span> <span class="toc-text">异常号的保存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">3.3.2.</span> <span class="toc-text">对比异常处理与函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E4%B8%8A%E4%B8%8B%E6%96%87%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F"><span class="toc-number">3.3.3.</span> <span class="toc-text">理解上下文结构体的前世今生</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91"><span class="toc-number">3.4.</span> <span class="toc-text">事件分发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">3.5.</span> <span class="toc-text">恢复上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8ENanos-lite%E8%B0%83%E7%94%A8-yield-%E5%BC%80%E5%A7%8B-%E5%88%B0%E4%BB%8E-yield-%E8%BF%94%E5%9B%9E%E7%9A%84%E6%9C%9F%E9%97%B4-%E8%BF%99%E4%B8%80%E8%B6%9F%E6%97%85%E7%A8%8B%E5%85%B7%E4%BD%93%E7%BB%8F%E5%8E%86%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">3.6.</span> <span class="toc-text">从Nanos-lite调用 yield()开始, 到从 yield()返回的期间, 这一趟旅程具体经历了什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%9AAM%E7%BB%99%E7%A8%8B%E5%BA%8F%E7%95%99%E4%BA%86%E5%A4%9A%E5%A4%A7%E7%9A%84%E6%A0%88%E7%A9%BA%E9%97%B4"><span class="toc-number">3.7.</span> <span class="toc-text">小问题：AM给程序留了多大的栈空间</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">用户程序和系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.1.</span> <span class="toc-text">加载第一个用户程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87"><span class="toc-number">4.1.1.</span> <span class="toc-text">可执行文件如何组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%98%AF%E8%AF%86%E5%88%AB%E4%B8%8D%E5%90%8C%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%EF%BC%9F"><span class="toc-number">4.1.2.</span> <span class="toc-text">如何是识别不同格式的可执行文件？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ELF%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%A7%86%E8%A7%92%E6%9D%A5%E7%BB%84%E7%BB%87%E4%B8%80%E4%B8%AA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="toc-number">4.1.3.</span> <span class="toc-text">ELF提供的两个视角来组织一个可执行文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E5%92%8C%E6%A0%88%E5%9C%A8%E5%93%AA"><span class="toc-number">4.1.4.</span> <span class="toc-text">堆和栈在哪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%97%E4%BD%99%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.5.</span> <span class="toc-text">冗余的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B8%85%E9%9B%B6"><span class="toc-number">4.1.6.</span> <span class="toc-text">为什么清零</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">4.2.</span> <span class="toc-text">操作系统的运行时环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">4.2.1.</span> <span class="toc-text">系统调用与运行时环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%9A%84TRM"><span class="toc-number">4.4.</span> <span class="toc-text">操作系统上的TRM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA"><span class="toc-number">4.4.1.</span> <span class="toc-text">标准输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E5%8C%BA%E7%AE%A1%E7%90%86"><span class="toc-number">4.4.2.</span> <span class="toc-text">堆区管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">实现中遇到的问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-number">4.4.3.</span> <span class="toc-text">批处理的思想</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hello%E7%A8%8B%E5%BA%8F%E6%98%AF%E4%BB%80%E4%B9%88-%E5%AE%83%E4%BB%8E%E8%80%8C%E4%BD%95%E6%9D%A5-%E8%A6%81%E5%88%B0%E5%93%AA%E9%87%8C%E5%8E%BB"><span class="toc-number">5.</span> <span class="toc-text">hello程序是什么, 它从而何来, 要到哪里去</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">6.</span> <span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E6%98%93%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">6.1.</span> <span class="toc-text">简易文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%BB%E5%86%99"><span class="toc-number">6.1.1.</span> <span class="toc-text">基本读写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99-plus"><span class="toc-number">6.1.2.</span> <span class="toc-text">文件读写 plus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E5%8A%A0%E5%85%A5open-offset"><span class="toc-number">6.1.3.</span> <span class="toc-text">额外加入open_offset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A9loader%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6"><span class="toc-number">6.1.4.</span> <span class="toc-text">让loader使用文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%88%87%E7%9A%86%E6%96%87%E4%BB%B6"><span class="toc-number">6.2.</span> <span class="toc-text">一切皆文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E6%A0%B7%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-number">6.2.1.</span> <span class="toc-text">这样设计的由来</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%AE%BF%E9%97%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">6.2.1.1.</span> <span class="toc-text">直接系统调用访问设备的问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E5%A4%84"><span class="toc-number">6.2.2.</span> <span class="toc-text">好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FVFS"><span class="toc-number">6.3.</span> <span class="toc-text">虚拟文件系统VFS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%9A%84IOE"><span class="toc-number">6.4.</span> <span class="toc-text">操作系统上的IOE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%92%9F%E6%8A%BD%E8%B1%A1"><span class="toc-number">6.4.1.</span> <span class="toc-text">时钟抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%94%AE%E6%8A%BD%E8%B1%A1"><span class="toc-number">6.4.2.</span> <span class="toc-text">按键抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%8F%E5%B9%95%E6%8A%BD%E8%B1%A1"><span class="toc-number">6.4.3.</span> <span class="toc-text">屏幕抽象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%BE%E5%BD%A9%E7%BA%B7%E5%91%88%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">7.</span> <span class="toc-text">精彩纷呈的应用程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E4%B8%B0%E5%AF%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">7.1.</span> <span class="toc-text">更丰富的运行时环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BA%93"><span class="toc-number">7.1.1.</span> <span class="toc-text">多媒体库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%82%B9%E8%BF%90%E7%AE%97"><span class="toc-number">7.1.2.</span> <span class="toc-text">定点运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Navy%E4%BD%9C%E4%B8%BA%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD"><span class="toc-number">7.1.3.</span> <span class="toc-text">Navy作为基础设施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Wine%EF%BC%8CWSL%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E5%85%BC%E5%AE%B9"><span class="toc-number">7.1.3.1.</span> <span class="toc-text">Wine，WSL和运行时环境兼容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Navy%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">7.2.</span> <span class="toc-text">Navy中的应用程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E6%9C%80%E5%A4%B4%E7%96%BC%E7%9A%84%E4%BA%8B%E6%83%85"><span class="toc-number">7.2.1.</span> <span class="toc-text">遇到的最头疼的事情</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%88%E6%9E%81%E6%8B%B7%E9%97%AE"><span class="toc-number">7.3.</span> <span class="toc-text">终极拷问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0"><span class="toc-number">7.4.</span> <span class="toc-text">运行仙剑奇侠传</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/5b2b7d53.html" title="PA4">PA4</a><time datetime="2023-09-03T07:42:03.000Z" title="Created 2023-09-03 15:42:03">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/c54fe8f0.html" title="PA3">PA3</a><time datetime="2023-09-03T07:40:35.000Z" title="Created 2023-09-03 15:40:35">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/110fe971.html" title="PA0-2">PA0-2</a><time datetime="2023-09-03T07:38:31.000Z" title="Created 2023-09-03 15:38:31">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/730b3a2f.html" title="B+Tree">B+Tree</a><time datetime="2023-09-03T07:30:53.000Z" title="Created 2023-09-03 15:30:53">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/8457a522.html" title="2021_Buffer_pool">2021_Buffer_pool</a><time datetime="2023-09-03T07:28:49.000Z" title="Created 2023-09-03 15:28:49">2023-09-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Big_Swag</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/moyu/"><i class="fa fa-gamepad"></i><span>休闲游戏</span></a><a class="rightMenu-item" target="_blank" rel="noopener" href="https://tools.haiyong.site"><i class="fa fa-tools"></i><span>实用工具</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:changeMouseMode();"><i class="fa fa-mouse"></i><span>切换鼠标右键</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script type="text/javascript" src="/js/rightmenu.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
