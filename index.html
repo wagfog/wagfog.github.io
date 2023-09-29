@@ -55,7 +55,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-09-29 22:55:34'
+  postUpdate: '2023-09-29 23:18:57'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -159,7 +159,274 @@
       }
     }
     detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Swag_BLog"><span class="site-name">Swag_BLog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Swag_BLog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/5b2b7d53.html" title="PA4">PA4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:42:03.000Z" title="Created 2023-09-03 15:42:03">2023-09-03</time></span></div><div class="content">多道程序在之前的内容中，我们已经成功实现了一个批处理系统，甚至运行了仙剑奇侠传！
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Swag_BLog"><span class="site-name">Swag_BLog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Swag_BLog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/b21cb050.html" title="IO多路复用">IO多路复用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-29T15:17:46.000Z" title="Created 2023-09-29 23:17:46">2023-09-29</time></span></div><div class="content">IO多路复用很经典的面试题目，常出现于网络或redis提问中
+什么是IO多路复用IO多路复用是一种同步的IO模型。利用IO多路复用模型，可以实现一个线程监视多个文件句柄，；一旦某个文件句柄就绪，就能够通知到对应应用程序进行相应的读写操作；没有文件句柄就绪时就会阻塞应用程序，从而释放出CPU资源
+IO在操作系统中，数据在内核态和用户态之间的读写操作，大部分情况下是指代网络IO
+多路多个TCP连接，多个socket或者多个Channel
+复用复用一个或者多个线程资源
+一些基本概念socket：对网络中不同主机上的应用进程之间进行双向通信的端点的抽象
+把IO多路复用实例化以收作业为例子
+老师让同学们做作业，同学们做完作业后收作业
+
+同步阻塞
+按顺序收作业，如果有一个没有做完，就要一直等待他写完那
+
+
+同步非阻塞
+条件同上，但是有人没写完就跳过不等了
+
+
+select&#x2F;poll
+学生写完了会举手，但是老师看不见谁举手了，要一个个问是谁，再去收
+
+
+epoll
+学生写完作业会举手，并且知到是谁，直接去收作业即可
+
+
+
+同步阻塞
+客户端
+一个while循环不断的监听，没有收到消息就会阻塞 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/c8c4683d.html" title="数据链路层">数据链路层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-29T15:11:19.000Z" title="Created 2023-09-29 23:11:19">2023-09-29</time></span></div><div class="content">数据链路层的地位在网络体系结构中的地位：主机间的通信可以看做是在不同的链路上组成的
+概述
+链路
+从一个结点到相领的结点的一段物理链路，中间没有任何交换结点
+
+
+数据链路
+把实现通信协议的硬件和软件加到链路上，就构成了数据链路
+（以帧为单位传输和处理数据
+
+
+
+三个重要问题封装成帧把网络层交付的协议数据单元(| 应用层协议数据 | 运输层 | 网络层 |)，加上帧头和帧尾，使之成为帧(|帧头| 原数据单元 |帧尾|)
+
+差错检测判断是否误码
+用检错码（封装在帧尾中的FCS字段进行检测
+可靠传输就是发送发发送什么，接收方就能收到什么
+使用广播信道(CSMA&#x2F;CD接入控制协议)的数据链路层存在更多问题(类似于计算机单条总线遇到的问题)
+封装成帧现在对封装成帧进行详细阐述
+如何提取帧
+接收方的数据链路层如何以物理层教父的比特流中提取出一个个的帧
+帧定界符
+帧头和帧尾的作用之一就是帧定界
+帧头和帧尾各有一字节的标志
+
+
+没有帧定界标志的怎么办
+物理层会再其前加上前导码
+
+
+
+透明传输数据链路层对上层交付的传输数据没有任何限制，好像链路层不存在一样
+
+导致问题
+有可能上面的数据包含与帧定 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/769365ef.html" title="网络层">网络层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-29T15:11:07.000Z" title="Created 2023-09-29 23:11:07">2023-09-29</time></span></div><div class="content">概述主要任务：实现网络互联进而的实现数据包在个网络之间的传递
+要解决网络层任务，要解决以下主要问题
+
+网络层向运输层提供可靠&#x2F;不可靠传输
+寻址问题
+路由选择问题—》
+路由表的人工配置和算法选择
+
+
+
+因特网：用户最多的互联网，使用TCP&#x2F;IP协议栈
+由于TCP&#x2F;IP协议栈的网络层使用网际层协议IP，因此在TCP&#x2F;IP协议中网络层也称为网际层
+网络层提供的两种服务面向连接的虚电路服务和无连接的数据包服务
+虚电路服务
+可靠通信的网络来保证
+必须建立网络层的连接—》虚电路vc
+通信双方沿着已经建立的虚电路发送分组
+目的主机的地址仅在连接建立的阶段使用，之后每个分组的首部只需携带一条虚电路的编号
+再使用可靠的传输网络协议就可使发送的分组最终正确的到达目的
+通信结束，释放已经建立的虚电路
+
+无连接的数据报服务因特网就是采用了这种设计思想，而没有采用虚电路服务
+
+可靠通信由用户主机来保证
+不需要建立网络层连接
+每个分组可以走不同路段
+每个分组的首部必须携带目的主机的完整地址
+缺点
+可能导致误码，丢失，重复和失序
+
+
+由于网络本身不提供端到端的可靠传输服务使得 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/652d7ab3.html" title="物理层">物理层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-29T15:10:57.000Z" title="Created 2023-09-29 23:10:57">2023-09-29</time></span></div><div class="content">基本概念
+四大特性
+机械特性
+指明接口所用接线器的形状尺寸等
+
+
+电气特性
+电压范围
+
+
+功能特性
+电压表示何意
+
+
+过程特性
+事件出现顺序
+
+
+
+
+
+物理层下的传输媒体
+导引型
+双绞线，光纤，电力线
+
+
+非导引型
+无线电波，微波，红外线，可见光
+
+
+
+传输方式串行和并行传输
+串行与并行传输
+10000110110—&gt;串行
+并行：
+100100101
+011101110
+….
+
+
+上面的就是并行，量大成本高，一般多见于计算机内部总线
+
+
+
+同步与异步
+同步
+收发双发时钟同步的方法
+外同步：收发双方添加相同的时钟信号线
+内同步：发送端将时钟同步信号编码发送到数据中一起传输
+
+
+
+
+异步
+字节间异步
+比特间异步
+
+
+
+。。。工通信
+单工
+单向通信
+
+
+半双工
+不同时交替信息
+
+
+全双工
+像电话一样
+
+
+
+编码与调特消息—》数据–通过网卡–》信号—》基带信号
+
+基带信号
+数字基带信号
+编码：数字信道
+调制：模拟信道
+
+
+模拟基带信号
+编码：数字信道，音频数字化
+调制：模拟信息：语音加载到载波信号
+
+
+
+
+
+码元：代表不同离散数数值的基本波形
+常用编码
+不归零编码
+难以辨别相同电平时几个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/2cad8b04.html" title="运输层">运输层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-29T15:10:46.000Z" title="Created 2023-09-29 23:10:46">2023-09-29</time></span></div><div class="content">先前的学习内容
+
+既然主机与主机之间已经实现通信了，为什么还需要接下来的运输层呢？
+因为实际在计算机网络中进行通信的真正实体是位于通信两端主机中的进程
+
+
+
+运输层概述如何为运行在不同主机上的应用进程提供直接的通信服务是运输层的任务，运输层的协议又称为端到端协议
+
+运输层的抽象
+运输层端口号，复用和分用的概念端口号
+运行在计算机上的进程使用进程标识符PID来标志
+但是在因特网上又有所不同了
+
+
+小总结一下上面的内容：
+
+为什么需要端口号？
+计算机上的进程在不同的操作系统中用不同格式的进程标识符进行标识
+但是进程间的通信不可避免的会再不同操作系统的计算机中记性通信
+因此为了使运行不同操作系统的计算机的应用进程之间能够进行网络通信，就需要使用统一的方法对TCP&#x2F;IP体系的应用进程进行标识
+
+
+
+复用和分用
+udp复用
+在运输层使用UDP协议进行封装
+
+
+tcp复用
+在运输层使用tcp协议进行封装
+
+
+
+最后再通过IP协议封装成IP数据报，(IP复用)
+
+数据报中协议字段的大小
+为6代表TCP复用
+为17代表UDP复用
+
+
+
+再来到接收方
+
+根据IP协议对IP进行分用
+根据协议字段 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/8c3a387f.html" title="计网_概述.md">计网_概述.md</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-29T15:02:40.000Z" title="Created 2023-09-29 23:02:40">2023-09-29</time></span></div><div class="content">因特网网络是由结点和链路共同组成的
+互联网则是由众多网络共同组成的
+internet &amp; Internet两者有区别
+大写的是专有名词，指代全球最大的计算机网络
+小写的是通用名词，是多个计算机互联的网络
+ISP现行的网络通信服务是由ISP（Internet Serveice Provider）提供的
+现在的ISP分为三层
+
+一层ISP：主干网-&gt;直接互联的，一般是国际性区域
+二层：区域性，国家性，大公司
+三层：本地ISP（校园网
+
+所以两台主机之间的通信要经过多个ISP
+组成
+边缘
+用户直接用的主机来通信和资源共享
+也称为末端
+
+
+核心
+大量网络和路由器
+是用来给边缘部分提供服务的
+
+
+
+交换方式主要有三种
+电路交换主机之间两两相连，大概需要n*(n-1)&#x2F;2条线路
+太多线了，除了逻辑简单没什么优点了
+交换机主机连向一个交换机
+
+建立连接
+通话
+释放连接
+
+缺点： 效率低下
+优点：时延小，有序，无冲突
+分组交换分组交换就是每台计算机通信时把数据包进行分组打包只要在头部附上本机的信息和组号就可以多台计算机共用一条通信线路，这样就提高了通信线路的利用率。
+优缺点统一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/5b2b7d53.html" title="PA4">PA4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:42:03.000Z" title="Created 2023-09-03 15:42:03">2023-09-03</time></span></div><div class="content">多道程序在之前的内容中，我们已经成功实现了一个批处理系统，甚至运行了仙剑奇侠传！
 但是我们的系统仍然具备已经的缺憾，就是目前只能运行一个程序，只有当一个程序结束执行之后，才会开始执行下一个程序
 
 影响
@@ -242,160 +509,7 @@ Task 2B+ TREE  DATA STRUCTURE
 
 删除
 
-从根节点开始向 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/8457a522.html" title="2021_Buffer_pool">2021_Buffer_pool</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:28:49.000Z" title="Created 2023-09-03 15:28:49">2023-09-03</time></span></div><div class="content">What is buffer pool?The buffer pool is responsible for moving physical pages(物理页面) back and forth(来回移动) from main memory to disk
-The buffer pool’s operations are transparent to other parts in the system
-system asks the buffer pool for a page using its unique identifier (page_id_t)and it does not know whether that page is already in memory or whether the system has to go retrieve it from disk(系统是否必须去从磁盘中检索它).
-thread-safe&#x2F;&#x2F;线程安全need to make sure that their critical sections are protected  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/399dc9ec.html" title="2022_Buffer_pool">2022_Buffer_pool</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:27:49.000Z" title="Created 2023-09-03 15:27:49">2023-09-03</time></span></div><div class="content">我不得不说的一些事情因为guardscpoe中2021的测试用例已经停用
-所以我重新pull了一份2022版的代码，以便能够参加guardScope
-但是好像由于尺策先生的帮助，在2022年份的project有了更多有意义的挑战和乐趣，令人期待~
-Buffer pool project啊这里是叫我们来做一个缓存池啊!
-The buffer pool is responsible for moving physical pages back and forth from main memory to disk.
-这里的介绍比起2021年的还是没变多少~
-It allows a DBMS to support databases that are larger than the amount of memory that is available to the system.
-Task#1 Extendible Hash Table我们需要建造一个general purpose(多用途)的使用无序的桶来存储键值对的哈希表
-主要的难点在于 Insert(K&amp;key ,V&amp;va ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/4c1dcd30.html" title="redis中各个数据结构之应用">redis中各个数据结构之应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:24:11.000Z" title="Created 2023-09-03 15:24:11">2023-09-03</time></span></div><div class="content">set这是很常用的一个数据结构，集合
-除了基本的sadd setname value ….
-spop 等基本命令之外，还有用于集合运算的命令
-例如：
-
-工程实践比如QQ中的你可能认识的人，共同好友等…
-就通过redis的集合运算来进行获取
-或者，微信朋友圈点赞：
-
-Zset有序集合！
-大概和set 差不多，但是有自动排序的功能
-在set的基础上，每个val前加一个score分数值，之前set是 setname value valuezset是 setname score1 v1 socre2 v2
-
-工程实践显而易见啊，像是热搜榜单，排行榜单都可以用这个来完善
-面试题假设对redis排序结果集是否了解？
-
-请说出五个常用命令
-zadd
-zrange
-zcard
-zrem
-zubcrby
-
-
-用在哪里，如何使用
-比如说根据商品销售对商品进行排序显示
-今天热销的商品
-直播间的打赏榜等
-
-
-具体操作
-举例：先定义商品销售排行榜，sorted set集合，key是goods:sellsort
-商品编号1001的销量是9，1002的销量是15
-如下图操作
-
-
-
-
-bitmap位图数据结构
-由0和 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cbc2bd8b.html" title="redis事务">redis事务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:21:20.000Z" title="Created 2023-09-03 15:21:20">2023-09-03</time></span></div><div class="content">什么是一般的数据库事务在对数据库的操作的一部分sql中，这些sql要么都成功，要么都失败。
-redis事务的语法
-redis事务和关系型数据库事务的区别
-单独的隔离操作
-redis的事务仅仅是保证事物里的操作会被连续杜查你的执行
-
-
-没有隔离级别的概念
-因为事物提交前任何指令都不会被实际执行，也就不存在“事物内的查询要看到事物里的更新，在事物外的查询不能看到”这种问题了
-
-
-不保证原子性   &#x2F; 或者部分支持原子性
-不保证所有指令同时成功或者同时失败，只有决定是否开始执行全部指令的能力，没有执行到一半进行回滚的能力
-
-
-排他性
-会保证一个事物内的命令依次执行，不会被其他命令插入
-
-
-
-实操redis开启事务后不会马上对其进行执行
-而是会把谢瑞的命令放入队列中，然后在输出exec时统一执行
-
-管道和事物有点类似，但是本质完全不同x
-先来讲述问题由来
-如何优化频繁命令往返造成的性能瓶颈？有点像输入输出为什么需要缓存问题
-像这样的操作同样操作一万次，就是频繁的命令往返
-问题由来
-所以我们如果能够把一些频繁的命令存在一起，那么就会大大优化性能！
-
-管道是什么
-批处理命令变种优化措施， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/e38aeb39.html" title="redis哨兵">redis哨兵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:19:21.000Z" title="Created 2023-09-03 15:19:21">2023-09-03</time></span></div><div class="content">什么是哨兵这是由上一章学过的主从复制引出的概念
-众所周知，主机用来写，从机用来读，如果过主机挂了，从机原地待命
-这样不符合高可用系统的标准
-哨兵就是吹哨人巡查监控后台master主机是否故障，如果故障了根据投票数自动将某一个从库转换成新的主库，继续对外服务
-哨兵为redis提供了高可用机制，当我们没有使用集群的时候
-就是无人值守运维
-哨兵能干嘛前提说明 redis Sentinel架构
-三个哨兵
-自动监控和维护集群，不存放数据，只是吹哨人
-
-
-一主二从
-用于数据读取和存放
-
-
-
-
-哨兵怎么用哨兵一定要配集群
-就像上面的样子
-因为，不止可能我们的redis主机挂掉，哨兵也可能挂掉！！！，所以需要集群
-
-重点参数
-监控指令
-设置要监控的master服务器
-quorum表示最少有几个哨兵认为主机因故障下线而统一故障前迁移的法定票数
-为什么要这个投票有时候一个sentinel会因为网络堵塞而误以为一个master redis已经撕掉了，所以在sentinel集群环境下需要多个sentinel互相沟通来确认某人master是否真的死了，quorum这个参数就是依据
-哨兵的运行流程和选举原理
-
-故 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/dcfaa904.html" title="redis持久化">redis持久化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T07:18:03.000Z" title="Created 2023-09-03 15:18:03">2023-09-03</time></span></div><div class="content">理论介绍如何把redis的数据写入磁盘中
-为什么需要持久化内存中的数据是容易失去的，如果断电之类的就会数据丢失
-持久化双雄RDB
-AOF
-RDBredis dat abase
-类似快照的方法
-是什么在指定的时间间隔，执行数据集的时间点快照
-
-实现累死照片记录效果的方式，把某一时刻的数据和状态以文件的形式写到磁盘上
-快照文件就是RDB文件
-
-能干嘛
-存快照
-一锅端
-数据都在内存中，保存备份时执行的是全量快照，所有数据都存到磁盘中
-
-
-rdb保存的是dump.rdb文件
-
-使用在redis.conf文件中更改相关配置即可
-写入
-
-save 5 2
-两秒钟更改两次reids就直接保存dump.rdb文件
-
-
-手动更改
-save指令
-会阻塞当前redis服务器知到持久化工作完成
-线上禁止使用
-
-
-bgsave指令
-子进程在后台完成，允许主进程同时可以修改redis
-
-
-
-
-
-总结优点适合大规模的数据恢复
-按照业务定时备份
-对数据完整性和一致性要求不高
-RDB文件在内存中的加载速度要比AOF快的多
-缺点一般情况下并不会追溯到最新的数据，有时候可能丢失最新分钟数据
-以子进程在磁盘上进行持久化，如果 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Big_Swag</div><div class="author-info__description">myblog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+从根节点开始向 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Big_Swag</div><div class="author-info__description">myblog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
 margin: 0;
 align-items: center;
 justify-content: center;
@@ -405,7 +519,7 @@ canvas {
 display: block;
 margin: 0 auto;
 cursor: move;
-}</style><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/5b2b7d53.html" title="PA4">PA4</a><time datetime="2023-09-03T07:42:03.000Z" title="Created 2023-09-03 15:42:03">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/c54fe8f0.html" title="PA3">PA3</a><time datetime="2023-09-03T07:40:35.000Z" title="Created 2023-09-03 15:40:35">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/110fe971.html" title="PA0-2">PA0-2</a><time datetime="2023-09-03T07:38:31.000Z" title="Created 2023-09-03 15:38:31">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/730b3a2f.html" title="B+Tree">B+Tree</a><time datetime="2023-09-03T07:30:53.000Z" title="Created 2023-09-03 15:30:53">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/8457a522.html" title="2021_Buffer_pool">2021_Buffer_pool</a><time datetime="2023-09-03T07:28:49.000Z" title="Created 2023-09-03 15:28:49">2023-09-03</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/redis/" style="font-size: 1.5em; color: #99a9bf">redis</a> <a href="/tags/swag-creazy/" style="font-size: 1.1em; color: #999">swag creazy</a> <a href="/tags/PA/" style="font-size: 1.3em; color: #99a1ac">PA</a> <a href="/tags/CMU-15-445/" style="font-size: 1.3em; color: #99a1ac">CMU_15-445</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">12</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">15</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-09-29T14:55:34.935Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Big_Swag</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/moyu/"><i class="fa fa-gamepad"></i><span>休闲游戏</span></a><a class="rightMenu-item" target="_blank" rel="noopener" href="https://tools.haiyong.site"><i class="fa fa-tools"></i><span>实用工具</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:changeMouseMode();"><i class="fa fa-mouse"></i><span>切换鼠标右键</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script type="text/javascript" src="/js/rightmenu.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+}</style><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/b21cb050.html" title="IO多路复用">IO多路复用</a><time datetime="2023-09-29T15:17:46.000Z" title="Created 2023-09-29 23:17:46">2023-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/c8c4683d.html" title="数据链路层">数据链路层</a><time datetime="2023-09-29T15:11:19.000Z" title="Created 2023-09-29 23:11:19">2023-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/769365ef.html" title="网络层">网络层</a><time datetime="2023-09-29T15:11:07.000Z" title="Created 2023-09-29 23:11:07">2023-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/652d7ab3.html" title="物理层">物理层</a><time datetime="2023-09-29T15:10:57.000Z" title="Created 2023-09-29 23:10:57">2023-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/2cad8b04.html" title="运输层">运输层</a><time datetime="2023-09-29T15:10:46.000Z" title="Created 2023-09-29 23:10:46">2023-09-29</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/PA/" style="font-size: 1.23em; color: #999ea6">PA</a> <a href="/tags/swag-creazy/" style="font-size: 1.1em; color: #999">swag creazy</a> <a href="/tags/CMU-15-445/" style="font-size: 1.23em; color: #999ea6">CMU_15-445</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 1.5em; color: #99a9bf">计网</a> <a href="/tags/redis/" style="font-size: 1.37em; color: #99a4b2">redis</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">18</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">21</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-09-29T15:18:57.696Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Big_Swag</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/moyu/"><i class="fa fa-gamepad"></i><span>休闲游戏</span></a><a class="rightMenu-item" target="_blank" rel="noopener" href="https://tools.haiyong.site"><i class="fa fa-tools"></i><span>实用工具</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:changeMouseMode();"><i class="fa fa-mouse"></i><span>切换鼠标右键</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script type="text/javascript" src="/js/rightmenu.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
 POWERMODE.mobile = false;
 document.body.addEventListener('input', POWERMODE);
